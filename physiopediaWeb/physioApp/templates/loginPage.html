@@ -1,8 +1,41 @@
 <!DOCTYPE html>
 <html>
 <body>
-    
-<h1>loginPage test</h1>
+
+{% block content %}
+<form action="../currentMilestone" class="forms">
+    <label for="email">EMAIL</label><br>
+    <input type="email" id="email" name="email"><br><br>
+    <label for="password">PASSWORD</label><br>
+    <input type="password" id="password" name="password"><br>
+    <input type="checkbox"><label for="checkbox">REMEMBER ME</label><br><br>
+    <input type="submit" class="btn" value="SUBMIT"></button>
+</form>
+<br>
+<div>
+    <div class="container">
+        <a href="../signUp">CREATE ACCOUNT</a> <a class="container" href="">FORGOT PASSWORD</a>
+    </div>
+</div>
+<style>
+    .btn{
+        background-color: green;
+        text-align: center;
+        border-radius: 15px;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .container{
+        padding-left: 25%;
+    }
+
+    .a{
+        margin-left: 25%;
+    }
+</style>
+{% endblock %}
 
 </body>
 </html>

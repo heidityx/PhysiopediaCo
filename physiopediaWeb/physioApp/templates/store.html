@@ -1,4 +1,5 @@
 { %load static% }
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,6 @@
                 <button class="merchcategory" onclick="openMerchCat(event, 'mugs')">Mugs</button>
                 <button class="merchcategory" onclick="openMerchCat(event, 'headphones')">Headphones</button>
                 <button class="merchcategory" onclick="openMerchCat(event, 'pillows')">Pillows</button>
-            </div>
         </aside>
     
         <!-- the actual products selection is the main element of this page, qualifying it as an article -->
@@ -23,7 +23,6 @@
             <div id="Books/DVDs" class="merchcontent">
                 <h3>Books/DVDs</h3>
                 <div class="merchitems">	<!-- elements within this wrapper are aligned in a row with wrapping -->
-                    <div class="merchitem">	<!-- items have a fixed with, the number of items per line is dynamic -->
                         <div class="merchimage">
                             <img src="img/shop_c1.jpg" alt="Pull Over Hoodie">
                         </div>
@@ -54,7 +53,6 @@
                             <div class="merchname">
                                 Tank Top
                             </div>
-                            <div class="merchprice">
                                 $17 SGD
                             </div>
                         </div>
@@ -368,6 +366,7 @@
                 </div>
             </div>	<!-- end of Physiopedia Merch category -->
         </article>
+            margin: 0;
         
         <!-- the cart is responsively placed underneath the products or on the left, below the category selection -->
         <aside id="merchcart">
@@ -495,7 +494,6 @@
                 <div class="cartitemprice">
                     $0.00 SGD
                 </div>
-            </div>
             <div class="cartslot">	<!-- 16 -->
                 <div class="cartitemname">
                     empty
@@ -546,10 +544,876 @@
                 </div>
             </div>
         </aside>
+        img:hover, img:focus
+            transition: transform 0.5s;
+        }
         
-        <!-- the checkout button goes underneath the shopping cart, full width or to the left of products -->
-        <aside id="merchcheckout">
-            <button class="merchcheckout" onclick="checkOutCart()")>Checkout</button>
-        </aside>
+        a
+        {
+            display:inline-block;	/* most links are placed on buttons (exceptions below) */
+            width:95%;		/* and should take the whole width of the button */
+            color: #ffffff;		/* most links are on dark background (exceptions below) */
+            background: transparent;
+            padding: .3em;
+            text-decoration: none;
+            text-align: left;
+        }
+
+        a:hover, a:focus
+        {
+            background: transparent;
+            color: rgb(139, 171, 208);	/* most links should highlight in this colour (exceptions below) */
+        }
+
+        nav a
+        {
+            text-align: center;		/* Navigation links are centered on their buttons */
+            background: transparent;
+        }
+
+        nav a[aria-current=page]
+        {
+            font-variant: small-caps;	/* currently active page is styled differently */
+            font-weight: bold;
+        }
+
+        figure
+        {
+            position: relative;
+            display: inline-block;
+            top: 0;				/* figure element fills its parent completely */
+            z-index: 1;			/* place it in the foreground */
+            margin: 0;
+            padding: 0;
+        }
+
+        figure img
+        {
+            max-width: 100%;		/* the image inside takes the full width of the figure element */
+        }
+
+        figure figcaption
+        {
+            position: absolute;		/* the caption is placed inside the picture area instead of below */
+            font-size: 1em;
+            font-weight: bold;
+            padding: .2em 1em .2em 1em;
+            bottom: 0.5em;			/* placing it near the bottom of the image */
+            z-index: 2;			/* place the caption one z-index above the image so it's visible */
+            background: #333333;
+            color: #cccccc;
+        }
+
+        .figurecaptitle
+        {
+            font-size: 1.6em;		/* main teaser image has a larger title inside the caption */
+            font-weight: bold;
+        }
+
+        #merchcatsel, #merchproducts, #merchcart, #merchcheckout
+        {
+            color: rgb(1, 1, 1);	/* basically everything on the merch page has dark text */
+            background: rgb(255, 255, 255);		/* on bright background */
+        }
+
+        .merchcatselector
+        {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            display: flex; flex-direction: column;
+            animation: fadeEffect 1s; /* Fading effect takes 1 second */
+        }
+
+        .merchcatselector button
+        {
+            background-color: inherit;	/* same as the container */
+            color: #000000;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;		/* show them to the user as clickable */
+            padding: 14px 16px;
+            transition: 0.3s;	/* color changes for hover/active highlight happen within 0.3s */
+        }
+
+        .merchcatselector button:hover
+        {
+            background-color: #ddd;
+        }
+
+        .merchcatselector button.active
+        {
+            background-color: #ccc;
+        }
+
+        .merchcontent
+        {
+            display: none;
+            padding: 6px 12px;
+            border: 0;
+            animation: fadeEffect 1s; /* Fading effect takes 1 second */
+        }
+
+        .merchcontent > h3
+        {
+            margin-left: .5em;	/* the headline shouldn't stick directly to the left border */
+        }
+
+        .merchitems
+        {
+            display: flex;			/* merch items are shown inside a flex box */
+            flex-direction: row;	/* align them next to each other if possible */
+            flex-wrap: wrap;		/* with automatic wrapping between them */
+            justify-content: space-between; /* and use the full width, extending space inbetween if required */
+        }
+
+        .merchitem
+        {
+            border: .05em solid #383737;	/* a thin border around each item */
+            border-radius: .2em;			/* with just barely rounded corners */
+            padding: 0;						/* allow the content to fill the border entirely */
+            margin: 1%;						/* but keep a bit of space around the border */
+            width: 20em;	/* for alignment, set a fixed width, the height depends on the content */
+        }
+
+        .merchimage
+        {
+            margin-bottom: .5em;	/* keep a bit of distance between image and the text below it */
+        }
+
+        .merchimage img
+        {
+            margin: 0;		/* no space outside */
+            padding: 0;		/* nor inside any possible image border */
+            width: 100%;	/* use the full available width for the image */
+            border-bottom: 1px solid #383737;	/* a thin separator line towards the text below */
+        }
+
+        .merchfacts
+        {
+            display: flex;	/* in order to place the item name and price in one line */
+            flex-direction: row;	/* make this a flex box with row alignment instead of column */
+            width: 100%;	/* use the full container width */
+        }
+
+        .merchname
+        {
+            margin-left: .5em;	/* the name of the item has just a little space from the left border */
+        }
+
+        .merchprice
+        {
+            text-align: right;	/* the price is aligned to the right */
+            flex: 1;			/* in a flexbox that fills everything next to the item name */
+            margin-right: .5em;	/* just keep a small space from the right border */
+            font-weight: bold;	/* and print the price in bold */
+        }
+
+        .merchdesc
+        {
+            font-size: .9em;	/* the description gets a bit smaller font */
+            margin: .6em;	/* this is roughly the same as .5em on the default font size, so it aligns */
+        }
+
+        .merchsize
+        {
+            margin: 0 .5em .5em .5em;	/* a bit of space around except the top (element above has bottom margin) */
+        }
+
+        .merchaddcart
+        {
+            width: 100%;	/* Add to cart button uses full width */
+            padding: 10px;	/* a bit of space all around the text on the button */
+            border: none;
+            background-color: #8babd0;
+            color: white;
+            font-size: 20px;	/* the text is a bit larger than normal */
+            letter-spacing: 0.4px;	/* the larger font looks slighty squeezed, so add tiny space between letters */
+            cursor: pointer;	/* indicate to the user that it's clickable */
+        }
+
+        .merchaddcart:hover, .merchaddcart:active
+        {
+            color: black;	/* button text turns black upon hovering or clicking the button */
+        }
+
+        .merchpagenav
+        {
+            text-align: center;		/* horizontally center the page navigation */
+            margin: 2em 0 1em 0;	/* add a bit of space above and below */
+        }
+
+        .merchnavl, .merchnavr, .merchnavldisa, .merchnavrdisa
+        {
+            color: black;			/* defaults for page select buttons = black text */
+            background-color: #ccc;	/* on bright grey background */
+            border-radius: 50%;		/* buttons are a circle (each corner rounded 50% of both width and height) */
+            padding: 12px 16px 12px 16px;	/* The text is higher than wide, so for an actual circle more padding is required on left+right */
+            cursor: pointer;		/* show it to the user as clickable */
+        }
+
+        .merchnavldisa, .merchnavrdisa
+        {
+            color: #777;	/* disabled buttons are greyed out */
+            cursor: text;	/* cursor: not-allowed; looks too harsh */
+        }
+
+        .merchcurrpagenum
+        {
+            font-weight: bold;	/* current page number is bold */
+            margin: 0 1em 0 1em;	/* with a bit of space around the border */
+            padding: .2em;		/* and some space inside the border */
+            border: 1px solid black;	/* and has a thin square around it */
+        }
+
+        .cartitem
+        {
+            display: flex;	/* item name, quantity and price all go on the same line */
+            flex-direction: row;	/* so use a flex box with elements aligned in a row */
+            width: 100%;	/* and use the full width of the container */
+        }
+
+        .cartslot
+        {
+            display: none;	/* empty slots for cart items are invisible */
+        }
+
+        .cartitemname
+        {
+            margin: .5em;	/* name and quantity have a bit of space all around */
+        }
+
+        .cartitemprice
+        {
+            margin: .5em;	/* as has the price */
+            text-align: right;	/* but it's aligned towards the right */
+            flex: 1;	/* of a flex element that uses all of the remaining width after name+quantity */
+        }
+
+        .cartsum
+        {
+            border-top: 2px solid black;	/* a line above the sum */
+            display: flex;	/* 'Total' and the amount shall go to the same line */
+            flex-direction: row;	/* so use a flex box with elements aligned in a row */
+            width: 100%;	/* and use the full width of the container */
+        }
+
+        .cartsumtext
+        {
+            margin-left: .5em;	/* same margin on the left as the separate items above */
+            padding-top: .5em;	/* and a bit of padding towards the top border that acts as a line above the sum */
+        }
+
+        .cartsumamt
+        {
+            text-align: right;	/* aligned towards the right */
+            flex: 1;	/* of a flex element that uses all of the remaining width after the 'Total' text */
+            font-weight: bold;	/* sum is printed in bold */
+            margin-right: .5em;	/* same margin on the right as the separate items above */
+            padding-top: .5em;	/* and the same padding towards the line on top as the 'Total' text */
+        }
+
+        .merchcheckout
+        {
+            width: 100%;	/* the checkout button uses the full width of the container */
+            padding: 20px;	/* with a good amount of space around the button text */
+            border: none;
+            background-color: #8babd0;
+            color: white;
+            font-size: 20px;	/* the text is a bit larger than normal */
+            letter-spacing: 0.4px;	/* the larger font looks slighty squeezed, so add tiny space between letters */
+            cursor: pointer;	/* indicate to the user that it's clickable */
+        }
+
+        .merchcheckout:hover, .merchcheckout:active
+        {
+            color: black;	/* button text turns black upon hovering or clicking the button */
+        }
+
+        #anmerch
+        {
+            display: grid;	/* switch to grid mode */
+            grid-template-columns: repeat(10, 1fr);	/* create 10 equal width columns */
+        }
+        
+        #merchcatsel
+        {
+            grid-column: 1 / 4;		/* columns 1 to (excluding) 4 */
+            grid-row: 1 / 1;		/* effectively the left 30% of row 1, below the nav */
+        }
+        
+        #merchproducts
+        {
+            grid-column: 4 / -1;	/* columns from 4 to end */
+            grid-row: 1 / 98;		/* spanning rows 3 to just above the footer */
+        }
+        
+        #merchcart
+        {
+            grid-column: 1 / 4;		/* columns 1 to (excluding) 4 */
+            grid-row: 2 / 2;		/* effectively the left 30% of row 2, below the category selection */
+        }
+        
+        #merchcheckout
+        {
+            grid-column: 1 / 4;		/* columns 1 to (excluding) 4 */
+            grid-row: 3 / 3;		/* effectively the left 30% of row 5, below the shopping cart */
+        }
+
+    </style>
+</head>
+
+<!-- give the body a unique id so it can be referenced in the CSS,
+also call the Javascript to apply the color scheme and open the default merch category -->
+<body id="anmerch" onload="initMerch();">
+	<!-- the merch category selection goes to the left top for desktop resolutions, top for mobile -->
+	<aside id="merchcatsel">
+		<h2>Product Categories</h2>
+		<div class="merchcatselector">	<!-- first button has an id to simulate a click on it when loading page -->
+			<button class="merchcategory" id="initialmerchcat" onclick="openMerchCat(event, 'clothing')">Clothing</button>
+			<button class="merchcategory" onclick="openMerchCat(event, 'mugs')">Mugs</button>
+			<button class="merchcategory" onclick="openMerchCat(event, 'headphones')">Headphones</button>
+			<button class="merchcategory" onclick="openMerchCat(event, 'pillows')">Pillows</button>
+		</div>
+	</aside>
+
+	<!-- the actual products selection is the main element of this page, qualifying it as an article -->
+	<article id="merchproducts">
+		<!-- only one of the .merchcontent containers will be visible at a time -->
+
+		<!-- +++++++++++++ Clothing category +++++++++++++++ -->
+		<div id="clothing" class="merchcontent">
+			<h3>Clothing</h3>
+		    <div class="merchitems">	<!-- elements within this wrapper are aligned in a row with wrapping -->
+				<div class="merchitem">	<!-- items have a fixed with, the number of items per line is dynamic -->
+					<div class="merchimage">
+						<img src="img/shop_c1.jpg" alt="Pull Over Hoodie">
+					</div>
+					<div class="merchfacts">	<!-- wrapper to switch to horizontal layout name + price -->
+						<div class="merchname">
+							Pull Over Hoodie
+						</div>
+						<div class="merchprice">
+							$30 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Comfy and warm pull over, like a warm hug to fall asleep in
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>One fits all, Unisex
+					</div>
+					<div class="merchbuy">	<!-- employ Javascript to simulate adding the item to the shopping cart -->
+						<button class="merchaddcart" onclick="addItemToCart('Pull Over Hoodie', 30)">Add to cart</button>
+					</div>
+				</div>	<!-- end of clothing item #1 -->
+
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_c2.jpg" alt="Tank Top">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Tank Top
+						</div>
+						<div class="merchprice">
+							$17 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Cooling and un-restricting, a perfect fit to chill in<br>
+						&nbsp;
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>One fits all, Unisex
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Tank Top', 17)">Add to cart</button>
+					</div>
+				</div>	<!-- end of clothing item #2 -->
+
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_c3.jpg" alt="T-shirt">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							T-shirt
+						</div>
+						<div class="merchprice">
+							$20 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Classic and verstile to vibe in any occasion<br>
+						&nbsp;
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>One fits all, Unisex
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('T-shirt', 20)">Add to cart</button>
+					</div>
+				</div>	<!-- end of clothing item #3 -->
+
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_c4.jpg" alt="Mask-Up">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Mask-Up
+						</div>
+						<div class="merchprice">
+							$10 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Hygienic and a perfect excuse out of an uncomfortable interaction
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>One fits all
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Mask-Up', 10)">Add to cart</button>
+					</div>
+				</div>	<!-- end of clothing item #4 -->
+			</div>	<!-- end of clothing items wrapper -->
+			<div class="merchpagenav">
+				<span class="merchnavldisa">&#10094;</span>
+				<span class="merchcurrpagenum">1</span>
+				<span class="merchnavrdisa">&#10095;</span>
+			</div>
+		</div>	<!-- end of clothing category -->
+
+		<!-- +++++++++++++ Mugs category +++++++++++++++ -->
+		<div id="mugs" class="merchcontent">
+			<h3>Mugs</h3>
+		    <div class="merchitems">
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_m1.jpg" alt="Cafe Au Lait Ceramic Mug">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Cafe Au Lait Ceramic Mug
+						</div>
+						<div class="merchprice">
+							$13 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Classy and antisocial &quot;shhhh it's asmr time&quot;<br>
+						&nbsp;
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>12 oz.
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Cafe Au Lait Ceramic Mug', 13)">Add to cart</button>
+					</div>
+				</div>	<!-- end of mug item #1 -->
+				
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_m2.jpg" alt="Iridescent Ceramic Mug">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Iridescent Ceramic Mug
+						</div>
+						<div class="merchprice">
+							$14 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Pamper yourself, treat yourself. Look it's so shiny and pretty! Mermaid vibes.
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>15 oz.
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Iridescent Ceramic Mug', 14)">Add to cart</button>
+					</div>
+				</div>	<!-- end of mug item #2 -->
+				
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_m3.jpg" alt="Metallic Mug">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Metallic Mug
+						</div>
+						<div class="merchprice">
+							$12 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Hip and cool, like the ace student you're going to be while studying with this mug.
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>11 oz.
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Metallic Mug', 12)">Add to cart</button>
+					</div>
+				</div>	<!-- end of mug item #3 -->
+			</div>	<!-- end of mug items wrapper -->
+			<div class="merchpagenav">
+				<span class="merchnavldisa">&#10094;</span>
+				<span class="merchcurrpagenum">1</span>
+				<span class="merchnavrdisa">&#10095;</span>
+			</div>
+		</div>	<!-- end of mug category -->
+
+		<!-- +++++++++++++ Headphones category +++++++++++++++ -->
+		<div id="headphones" class="merchcontent">
+			<h3>Headphones</h3>
+		    <div class="merchitems">
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_h1.jpg" alt="Wireless Bluetooth Earbuds">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Wireless Bluetooth Earbuds
+						</div>
+						<div class="merchprice">
+							$270 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Our opus magnum. Extreme sensitivity in guarantee of extreme tingles while wireless and with noise cancellation for a perfect tangle-less peaceful sleep<br>
+						specs: 10 hour playtime, noise-isolation, sensitivity 103.5 +-1.5dB at 1KHz, Impedance: 23 Ohm +-15% at 1KHz, 16-bit Stereo
+					</div>
+					<div class="merchsize">
+						<b>Size: </b>0.85" H X 2" W X 3" D
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Wireless Bluetooth Earbuds', 270)">Add to cart</button>
+					</div>
+				</div>	<!-- end of headphones item #1 -->
+				
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_h2.jpg" alt="In ear earphones">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							In ear earphones
+						</div>
+						<div class="merchprice">
+							$117 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Just like your normal earphones but better, clearer, sensitive and provide a secure fit for all-day asmr comfort<br>&nbsp;<br>
+						specs: S.P.L - 112dB , Impedance: 16 ohm<br>&nbsp;<br>&nbsp;
+					</div>
+					<div class="merchsize">
+						<b>Size: </b>One fits all, 48&quot; L
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('In ear earphones', 117)">Add to cart</button>
+					</div>
+				</div>	<!-- end of headphones item #2 -->
+				
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_h3.jpg" alt="Monitor headphones">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Monitor headphones
+						</div>
+						<div class="merchprice">
+							$200 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Pst.. Asmrtists..over here!!,  give a good gauge and perfect for that editing and sound mixing. Also makes the whole process less painful.<br>&nbsp;<br>
+						specs: S.P.L - 98 dB , Impedance: 1600 mW<br>&nbsp;<br>&nbsp;
+					</div>
+					<div class="merchsize">
+						<b>Size: </b>7.25&quot; x 6.25&quot; x 3&quot;
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Monitor headphones', 200)">Add to cart</button>
+					</div>
+				</div>	<!-- end of headphones item #3 -->
+			</div>	<!-- end of headphones items wrapper -->
+			<div class="merchpagenav">
+				<span class="merchnavldisa">&#10094;</span>
+				<span class="merchcurrpagenum">1</span>
+				<span class="merchnavrdisa">&#10095;</span>
+			</div>
+		</div>	<!-- end of headphones category -->
+
+		<!-- +++++++++++++ Pillows category +++++++++++++++ -->
+		<div id="pillows" class="merchcontent">
+			<h3>Pillows</h3>
+		    <div class="merchitems">
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_p1.jpg" alt="Memories of a star">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Memories of a star
+						</div>
+						<div class="merchprice">
+							$40 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Memory foam. Super cute super comfy. Has that dreamer aesthetic.
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>One size
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Memories of a star', 40)">Add to cart</button>
+					</div>
+				</div>	<!-- end of pillows item #1 -->
+				
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_p2.jpg" alt="Fluffy Kisses">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Fluffy Kisses
+						</div>
+						<div class="merchprice">
+							$40 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						It's so fluffy!!! Feel like a cotton candy prince or princess~
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>One size
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Fluffy Kisses', 40)">Add to cart</button>
+					</div>
+				</div>	<!-- end of pillows item #2 -->
+				
+				<div class="merchitem"> 
+					<div class="merchimage">
+						<img src="img/shop_p3.jpg" alt="Sleeping Beauty">
+					</div>
+					<div class="merchfacts">
+						<div class="merchname">
+							Sleeping Beauty
+						</div>
+						<div class="merchprice">
+							$40 SGD
+						</div>
+					</div>
+					<div class="merchdesc">
+						Organic silk for all the luxurious kings and queens
+					</div>
+					<div class="merchsize">
+						<b>Sizes: </b>One size
+					</div>
+					<div class="merchbuy">
+						<button class="merchaddcart" onclick="addItemToCart('Sleeping Beauty', 40)">Add to cart</button>
+					</div>
+				</div>	<!-- end of pillows item #1 -->
+			</div>	<!-- end of pillows items wrapper -->
+			<div class="merchpagenav">
+				<span class="merchnavldisa">&#10094;</span>
+				<span class="merchcurrpagenum">1</span>
+				<span class="merchnavrdisa">&#10095;</span>
+			</div>
+		</div>	<!-- end of pillows category -->
+	</article>
+	
+	<!-- the cart is responsively placed underneath the products or on the left, below the category selection -->
+	<aside id="merchcart">
+		<h2>Shopping Cart Summary</h2>
+		<!-- for simulating a shopping cart without a backend, divs are filled with content in Javascript;
+		class .cartslot is made invisible by the CSS; as the user puts items into the cart,
+		a Javascript will search for the first instance of class cartslot, fill its child elements
+		with content and then change the class to cartitem, to make it visible; 20 slots exist -->
+		<div class="cartslot">	<!-- 1 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 2 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 3 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 4 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 5 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 6 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 7 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 8 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 9 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 10 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 11 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 12 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 13 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 14 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 15 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 16 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 17 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 18 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 19 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<div class="cartslot">	<!-- 20 -->
+			<div class="cartitemname">
+				empty
+			</div>
+			<div class="cartitemprice">
+				$0.00 SGD
+			</div>
+		</div>
+		<!-- the summation line for the shopping cart; Javascript will update the content dynamically -->
+		<div class="cartsum">
+			<div class="cartsumtext">
+				Total:
+			</div>
+			<div class="cartsumamt">
+				$0.00 SGD
+			</div>
+		</div>
+	</aside>
+	
+	<!-- the checkout button goes underneath the shopping cart, full width or to the left of products -->
+	<aside id="merchcheckout">
+		<button class="merchcheckout" onclick="checkOutCart()")>Checkout</button>
+	</aside>
+
 </body>
 </html>

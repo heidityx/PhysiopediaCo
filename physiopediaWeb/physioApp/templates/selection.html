@@ -1,8 +1,104 @@
-<!DOCTYPE html>
-<html>
-<body>
-    
-<h1>selection test</h1>
 
-</body>
-</html>
+    <!DOCTYPE html>
+    <html>
+    
+         <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="Selection page for physiotherapy exercises">
+            <title>Selection Page</title>
+            {% load static %}
+            <link rel="stylesheet" href="{% static './css/selection.css' %}">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            
+          
+         </head>
+    
+        <main>
+           <header>
+                  
+              <div class="navbar">
+                   <a class="active" href="#Physiopedia">PHYSIOPEDIA</a> 
+                   <a href="#" target="_blank">Current Milestone</a> 
+                   <a href="#" target="_blank">My Journey</a> 
+                   <a href="#" target="_blank">Store</a> 
+                   <a href="#" target="_blank">Profile</a>
+                 
+                </div>
+    
+           </header>
+    
+           
+                  
+                    <div class="flex-container-img">
+                    <div>
+                    <label><b>Head, Neck and Shoulder</b></label>
+                    <img border="8" src="{% static '/images/neckpain.png' %}" alt = "Neck Pain">
+                    
+                    </div>
+    
+    
+                    <div>
+                    <label><b>Chest, Back and Waist</b></label>
+                    <img border="8" src="{% static '/images/Back.png' %}" alt="Back Pain">
+                    
+                    
+                    </div>
+                    </div>
+    
+                    <div class="flex-container-img">
+                      <div>
+                      <label><b>Arms and Hands</b></label>
+                      <img border="8" src="{% static '/images/hand.png' %}" alt="Hand Pain">
+                      </div>
+                      
+    
+                      <div>
+                      <label><b>Legs</b></label>
+                      <a href="Legs.html" target="_blank">
+                      <img border="8" src="{% static '/images/legs.png' %}" alt="Leg Pain">
+                      </a>
+                      </div>
+                      </div>
+                      
+                  
+        
+    
+                 <form class = "input">
+                  <h4>Subscribe Now!</h4>
+                  <P>To get the latest news and updates on our exercies.</P>
+                  <label for ="email">Enter Your Email</label>
+                  <input type = "email" id="email" name="email" >
+                  <input type="submit" value="submit">
+                  
+                  <ul class = "icons">
+                    <li>
+                        <i class = "fa fa-twitter"></i>
+                    </li>
+                    <li>
+                        <i class = "fa fa-facebook"></i>
+                    </li>
+                    <li>
+                        <i class = "fa fa-youtube"></i>
+                    </li>
+                    
+                </ul>
+                  
+                 </form>
+    
+    
+           </main>
+           
+           <footer>
+            <div class="footer">
+    
+              <p><small>&copy; Copyright {2022}, PHYSIOPEDIA</small> </p>
+              
+              
+    
+          </div>
+           </footer>
+          
+         </body>
+    </html>
+

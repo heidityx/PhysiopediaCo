@@ -1,0 +1,134 @@
+.navbar {
+    background-color: #18D6E3;
+    overflow: hidden;
+    
+  }
+  
+  /* Style the links */
+  .navbar a {
+    float:inline-start ;
+    color: #3F4949;
+    text-align: center;
+    padding: 15px 100px;
+    
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+  
+  /* Change color when hovering links */
+  .navbar a:hover {
+    background-color: #CD4C55;
+    color: black;
+  }
+  
+  /* Style Home button */
+  .navbar a.active {
+    background-color:#C850C0;
+    color: white;
+  }
+   
+  .flex-container {
+    display: flex;
+    flex-direction: row;
+    padding: 0 0 30px 0;
+    }
+
+    .flex-container > div {
+        width: 20%;
+        text-align: center;
+        line-height: 75px;
+        font-size: 20px;
+        border: 1px solid
+        }
+
+
+    .flex-container-img {
+    display: flex;
+    justify-content:space-around;
+    padding: 20px 0 80px 0;
+    
+    }
+    
+    .flex-container-img > div {
+    width: 20%;
+    height: max-content;
+    margin: 20px;
+    text-align: center;
+    font-size: 30px;
+    }
+    .flex-container-img > div > div {
+    border: 10px solid;
+    line-height: 175px;
+    }
+
+    .fa {
+        padding: 20px;
+        font-size: 30px;
+        width: 50px;
+        text-align: center;
+        text-decoration: none;
+      }
+      
+      
+      .icons{
+        display: flex;
+        justify-content: center;
+        padding:0px 0;
+      }
+      .icons li{
+        display: block;
+        padding: 5px;
+        margin: 2px;
+      }
+      .icons li i{
+        font-size: 26px;
+        opacity: 0.8;
+      }
+      .icons li i:hover{
+        color: #C850C0;
+        cursor: pointer;
+      }
+      
+      .icons li i:hover{
+        color: red;
+        cursor: pointer;
+      }
+      
+      
+      /* Facebook */
+      .fa-facebook {
+        background: #3B5998;
+        color: white;
+      }
+      
+      /* Twitter */
+      .fa-twitter {
+        background: #55ACEE;
+        color: white;
+      }
+      
+      /* Youtube */
+      .fa-youtube {
+          background:black;
+          color: white;
+      }
+      
+   
+    .input {
+        background-color: #95aedf;
+        padding: 5px;
+        margin: 5px;
+        font-size: 18px;
+       }
+
+       .footer {
+        position:relative;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: gray;
+        color: white;
+        text-align: center;
+        }

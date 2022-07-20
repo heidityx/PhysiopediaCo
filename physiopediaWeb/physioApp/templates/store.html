@@ -1,7 +1,6 @@
-{ %load static% }
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -125,184 +124,25 @@
             display: flex;		/* unnumbered lists are used as containers for the nav bar, footer and some menus */
             flex-direction: column;	/* by default (mobile view), place them underneath each other (vertical menu) */
             margin: 0;
+            margin-right: 1.3em;
+        }
+
+        li
+        {
+            list-style-type:none;	/* hide the bullet that normally comes with unnumbered list items */
+            margin: .3em 0;
+            flex: 1 1 100%;		/* make the items as wide as the list itself */
+        }
+
+        img
+        {
+            transform: scale(1.00);	/* in normal mode, no change to image scaling by default */
+            transition: transform 0.5s;
+        }
         
-        <!-- the cart is responsively placed underneath the products or on the left, below the category selection -->
-        <aside id="merchcart">
-            <h2>Shopping Cart Summary</h2>
-            <!-- for simulating a shopping cart without a backend, divs are filled with content in Javascript;
-            class .cartslot is made invisible by the CSS; as the user puts items into the cart,
-            a Javascript will search for the first instance of class cartslot, fill its child elements
-            with content and then change the class to cartitem, to make it visible; 20 slots exist -->
-            <div class="cartslot">	<!-- 1 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 2 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 3 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 4 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 5 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 6 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 7 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 8 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 9 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 10 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 11 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 12 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 13 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 14 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 15 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            <div class="cartslot">	<!-- 16 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 17 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 18 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 19 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <div class="cartslot">	<!-- 20 -->
-                <div class="cartitemname">
-                    empty
-                </div>
-                <div class="cartitemprice">
-                    $0.00 SGD
-                </div>
-            </div>
-            <!-- the summation line for the shopping cart; Javascript will update the content dynamically -->
-            <div class="cartsum">
-                <div class="cartsumtext">
-                    Total:
-                </div>
-                <div class="cartsumamt">
-                    $0.00 SGD
-                </div>
-            </div>
-        </aside>
         img:hover, img:focus
+        {
+            transform: scale(1.05);	/* scale images up when they are hovered or focused for pop-out effect */
             transition: transform 0.5s;
         }
         

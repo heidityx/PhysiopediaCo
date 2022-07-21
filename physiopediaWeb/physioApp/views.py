@@ -1,5 +1,6 @@
 from re import template
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -10,10 +11,12 @@ def displayStartup(request):
     template = loader.get_template('startupPage.html')
     return HttpResponse(template.render())
 
+@csrf_exempt
 def displayLogin(request):
     template = loader.get_template('loginPage.html')
     return HttpResponse(template.render())
 
+@csrf_exempt
 def displaySignUp(request):
     template = loader.get_template('signUpPage.html')
     return HttpResponse(template.render())
@@ -38,6 +41,7 @@ def displaySelectLegs(request):
     template = loader.get_template('selectLegs.html')
     return HttpResponse(template.render())
 
+@csrf_exempt
 def displayMilestone(request):
     template = loader.get_template('currentMilestone.html')
     return HttpResponse(template.render())

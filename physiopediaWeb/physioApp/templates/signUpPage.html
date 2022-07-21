@@ -12,7 +12,8 @@
 
 {% block content %}
 <center>
-<form style="max-width:550px;margin:auto" action="../login" class="forms">
+<form style="max-width:550px;margin:auto" action="../login/" class="forms" method="post">
+    {% csrf_token %}
     <br>
     <label for="fname">FIRST NAME*</label> <label for="lname">LAST NAME*</label><br><br>
     <div class="info">

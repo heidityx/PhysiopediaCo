@@ -1,47 +1,791 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Workout videos</title>
+    <script type="text/javascript">
+        var videoIndex = 1;	// counts 1 to n (1-based)
+        var slideIndex = 1;	// counts 1 to n (1-based)
 
-     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Selection page for physiotherapy exercises">
-        <title>Selection Page</title>
-        {% load static %}
-        <link rel="stylesheet" href="{% static './css/selection.css' %}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      
-     </head>
+        // initialize the video player
+        function initWorkoutVideo()
+        {
+            openVideo(videoIndex);
+        }
 
-    <main>
-       <header>
-              
-          <div class="navbar">
-               <a class="active" href="#Physiopedia">PHYSIOPEDIA</a> 
-               <a href="#">Current Milestone</a> 
-               <a href="#">My Journey</a> 
-               <a href="#">Store</a> 
-               <a href="#">Profile</a>
-             
-            </div>
+        // show the initial page of the thumb slider
+        function initSlideshow()
+        {
+            showSlides(slideIndex);
+        }
 
-       </header>
+        function openVideo(videoidx)
+        {
+            var i;
+            var descrElement = document.getElementsByClassName("videoinfocontainer");
+            var videolinks = [
+                // Day 1
+                "https://www.youtube.com/embed/aXDWRXLKJww",
+                "https://www.youtube.com/embed/x0KY7WS6mFU",
+                "https://www.youtube.com/embed/iQL-QnWu43g",
+                // Day 2
+                "https://www.youtube.com/embed/_2Qy10jG8qk",
+                "https://www.youtube.com/embed/bnyAtwfokW0",
+                // Day 3
+                "https://www.youtube.com/embed/Yo8TdfMDbYo",
+                "https://www.youtube.com/embed/Os6V03cl0qg",
+                "https://www.youtube.com/embed/1ddxs4lTGMo",
+                // Day 4
+                "https://www.youtube.com/embed/tf261DBxC-8",
+                "https://www.youtube.com/embed/x1kA7J7OX-Y",
+                "https://www.youtube.com/embed/SjWw9O-9SFE"
+            ];
 
-         <main>
-             <video src="" controls width="100%" height="400"></video>
-             <textarea name="textarea" rows="50" cols="50">this is the area for inputing text and descriptions</textarea>
+            // limit the value to the range 1...length (1-based)
+            if (videoidx < 1)
+            {
+                videoidx = 1;
+            }
+            if (videoidx > videolinks.length)
+            {
+                videoidx = videolinks.length;
+            }
+            videoIndex = videoidx;	// this now contains a verified value
 
+            // update the description area - first hide all
+            for (i = 0; i < descrElement.length; i++)
+            {
+                descrElement[i].style.display = "none";
+            }
+            // then show the selected one (minus 1 because array is 0-based)
+            descrElement[videoIndex-1].style.display = "block";
 
-        </main>
-       
-       <footer>
-        <div class="footer">
+            // get link to the video from array
+            var videopath = videolinks[videoIndex-1];
+            document.getElementById('vplayer').src = videopath;
+        }
 
-          <p><small>&copy; Copyright {2022}, PHYSIOPEDIA</small> </p>
-          
-          
+        function jumpToDay(evt, dayNumber)
+        {
+            // Declare all variables
+            var i, videoday;
+            var videoByDay = [1,4,6,9]; // first video for each day
+            
+            // range check and set current slideshow position
+            if (dayNumber < 1)
+            {
+                dayNumber = 1;
+            }
+            if (dayNumber > videoByDay.length)
+            {
+                dayNumber = videoByDay.length;
+            }
+            currentSlide(videoByDay[dayNumber-1]);
+            openVideo(videoByDay[dayNumber-1]);
 
-      </div>
-       </footer>
-      
-     </body>
+            // Get all elements with class="videoday" and remove the class "active"
+            videoday = document.getElementsByClassName("videoday");
+            for (i = 0; i < videoday.length; i++)
+            {
+                videoday[i].className = videoday[i].className.replace(" active", "");
+            }
+            
+            // add an "active" class to the button that was clicked
+            evt.currentTarget.className += " active";
+        }
+
+        // Next/previous page of thumbnails controls
+        function plusSlides(n)
+        {	// call with 1 for next slide or -1 for previous, actually any number works except 0
+            showSlides(slideIndex += n);	// shortcut to modify variable and then call function with new value
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n)
+        {	// set the current slide directly (when clicking on the dots below)
+            showSlides(slideIndex = n);	// shortcut to modify variable and then call function with new value
+        }
+
+        function showSlides(n)
+        {
+            var i;
+            // returns an array of all slides
+            var slides = document.getElementsByClassName("mySlides");
+            // returns an array of all dots
+            var dots = document.getElementsByClassName("dot");
+            // range check: if selected index is too high, show first slide instead (wraparound)
+            if (n > slides.length)
+            {
+                slideIndex = 1;
+            }
+            // range check: if selected index is too low, show last slide instead (wraparound)
+            if (n < 1)
+            {
+                slideIndex = slides.length;	// length = total number of slides
+            }								// this works because slideIndex is 1-based
+            // hide all slides
+            for (i = 0; i < slides.length; i++)
+            {	// count from 0 to one less than length, since array index is 0-based
+                slides[i].style.display = "none";
+            }
+            // inactivate all dots
+            for (i = 0; i < dots.length; i++)
+            {	// again, 0-based
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            //lastly, show the selected slide and show the corresponding dot as active
+            slides[slideIndex-1].style.display = "block";	// the -1 is required to convert from
+            dots[slideIndex-1].className += " active";		// 1-based slideIndex to 0-based array index
+        } 
+
+        function markAsCompleted()
+        {
+            alert("Backend is currently not available.\n");	// end of the demo version
+        }        
+    </script>
+
+    <style>
+        html
+        {
+            background: rgb(255, 255, 255);	/* bright background */
+            transition: background 1.0s;	/* go easy on the user's eyes, increase brightness gently */
+        }
+
+        body
+        {
+            margin: 0;
+            font-family: sans-serif;	/* no serifs for better legibility */
+            color: #cccccc;
+            /* mobile first, stack everything vertically */
+            display: flex; flex-direction: column;
+        }
+
+        article
+        {
+            border: 0;		/* no border around articles */
+            padding: .5em;
+            margin: 0 0 .5em 0;	/* a bit of margin below it */
+            color: rgb(1, 1, 1);	/* dark text on */
+            background: snow;	/* bright bg */
+            transition: color 1.0s, background 1.0s;	/* go easy on the user's eyes, increase brightness gently */
+        }
+
+        aside
+        {
+            border: 0;		/* no border around asides */
+            padding: .5em;
+            margin: 0 0 .5em 0;	/* the same margin below it as for the articles */
+            background: #fefefe;	/* bright bg with */
+            color: rgb(1, 1, 1);	/* dark text on it */
+            transition: color 1.0s, background 1.0s;	/* go easy on the user's eyes, increase brightness gently */
+        }
+                
+        h2
+        {
+            margin-left: 1.8em;	/* keep headlines from sticking too far on the left side */
+        }
+
+        ul
+        {
+            display: flex;		/* unnumbered lists are used as containers for the nav bar, footer and some menus */
+            flex-direction: column;	/* by default (mobile view), place them underneath each other (vertical menu) */
+            margin: 0;
+            margin-right: 1.3em;
+        }
+
+        li
+        {
+            list-style-type:none;	/* hide the bullet that normally comes with unnumbered list items */
+            margin: .3em 0;
+            flex: 1 1 100%;		/* make the items as wide as the list itself */
+        }
+
+        img
+        {
+            transform: scale(1.00);	/* in normal mode, no change to image scaling by default */
+            transition: transform 0.5s;
+        }
+        
+        img:hover, img:focus
+        {
+            transform: scale(1.05);	/* scale images up when they are hovered or focused for pop-out effect */
+            transition: transform 0.5s;
+        }
+        
+        a
+        {
+            display:inline-block;	/* most links are placed on buttons (exceptions below) */
+            width:95%;		/* and should take the whole width of the button */
+            color: #ffffff;		/* most links are on dark background (exceptions below) */
+            background: transparent;
+            padding: .3em;
+            text-decoration: none;
+            text-align: left;
+        }
+
+        a:hover, a:focus
+        {
+            background: transparent;
+            color: rgb(139, 171, 208);	/* most links should highlight in this colour (exceptions below) */
+        }
+
+        /* Slideshow container */
+        .slideshow-container, .mainthumbcontainer
+        {
+            max-width: 96%;			/* the thumbnails + margin take a total of 100% of the container width */
+            position: relative;
+            margin: 2%;
+        }
+
+        .mySlides
+        {
+            display: none;	/* Hide the images by default */
+            font-size: 0;	/* this allows each img tag to reside on a new code line */
+        }					/* without causing space inbetween in the rendered output */
+                            /* acknowledgement: user Yaari on StackExchange.com */
+
+        .mySlides img
+        {
+            width: 33.33%;		/* 3 images of 33.33% width without any padding or margin */
+            padding: 0;
+            margin: 0;
+            cursor: pointer;	/* let the user know the thumbs are clickable */
+        }
+
+        .prev, .next
+        {	/* Next & previous buttons for slideshow */
+            cursor: pointer;	/* indicate them to the user as clickable */
+            position: absolute;	/* manual alignment */
+            top: 50%;		/* center vertically and style it */
+            width: auto;
+            margin-top: -28px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;	/* fade the hover effect */
+            border-radius: 0 3px 3px 0;	/* for left button, the both right corners are rounded */
+            user-select: none;	/* prevent accidental highlighting by double clicking */
+        }
+
+        .next
+        {
+            right: 0;	/* the next button is placed at the very right edge */
+            border-radius: 3px 0 0 3px;	/* for right button, the both left corners are rounded */
+        }
+
+        .prev:hover, .next:hover
+        {
+            background-color: rgba(0,0,0,0.8);	/* On hover, add an 80% opaque black background */
+        }
+
+        /* Thumbnail title texts */
+        .thumbtitle1, .thumbtitle2, .thumbtitle3
+        {
+            color: #f2f2f2;	/* bright text */
+            background: rgba(0, 0, 0, 0.5);		/* semi-transparent black background */
+            font-size: 12px;	/* keep it small to not cover too much of the thumbnail */
+            padding: 2px 6px;
+            position: absolute;	/* position inside the slider area */
+            top: 0;			/* and at the very top of it */
+            left: 0;	/* default to left of container, will be overwritten below for thumbs 2 and 3 */
+            max-width: 33.33%;	/* limit the title area to the underlying image's width */
+            z-index: 2;	/* make sure it's on top of the image */
+            cursor: pointer;	/* show the title as clickable, like the image below it */
+        }
+
+        .thumbtitle2
+        {
+            left: 33.33%;	/* Thumbnail title text for middle thumb */
+        }
+
+        .thumbtitle3
+        {
+            left: 66.67%;	/* Thumbnail title text for rightmost thumb */
+        }
+
+        /* The dots/bullets/indicators */
+        .dot
+        {
+            cursor: pointer;	/* show them to the user as clickable */
+            height: 15px;
+            width: 15px;
+            margin: 0 2px 1em 2px;
+            background-color: #717171;	/* the background is the actual dot, inactive color */
+            border-radius: 50%;		/* border-radius 50% is used to create a circle (4 corners of 50% width + height each) */
+            display: inline-block;
+            transition: background-color 0.6s ease;	/* fade the active color in and out */
+        }
+
+        .active, .dot:hover
+        {
+            background-color: #ccc;	/* highlight the currently active and any hovered dot */
+        }
+
+        #videoplayer
+        {
+            padding: .5em 2% 0 2%;	/* save height, but do not let the player protrude too far on the sides */
+        }
+
+        .video-container
+        {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; 
+            height: 0;
+        }
+
+        .video-container iframe
+        {
+            position: absolute;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .videotitle
+        {
+            font-size: 150%;		/* video title gets a larger font */
+            padding-bottom: .5em;	/* leave a bit of space towards the description */
+        }
+
+        #workoutvideonav
+        {
+            color: rgb(255, 255, 255);	/* video navigation (thumb slider) has bright text */
+            background: #000000;		/* on dark background */
+        }
+
+        /* Style the div containing the buttons for day selection */
+        .videodayselector
+        {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+            display: flex; flex-direction: column;
+            animation: fadeEffect 1s; /* Fading effect takes 1 second */
+        }
+
+        /* Style the buttons themselves */
+        .videodayselector button
+        {
+            background-color: inherit;	/* same as the container */
+            color: #000000;
+            font-size: 250%;
+            letter-spacing: 0.4px;	/* the larger font looks slighty squeezed, so add tiny space between letters */
+            float: left;
+            border: none;
+            margin-top: 16px;
+            margin-bottom: 16px;
+            outline: none;
+            cursor: pointer;		/* show them to the user as clickable */
+            padding: 14px 16px;
+            transition: 0.3s;	/* color changes for hover/active highlight happen within 0.3s */
+        }
+
+        /* Change background color of buttons on hover */
+        .videodayselector button:hover
+        {
+            background-color: #ddd;
+        }
+
+        /* currently active (last clicked) entry gets extra highlight */
+        .videodayselector button.active
+        {
+            background-color: #ccc;
+        }
+
+        /* Style the dynamic post content areas, all content is hidden initially */
+        .videoinfocontainer
+        {
+            display: none;
+            padding: 6px 12px;
+            border: 0;
+            animation: fadeEffect 1s; /* Fading effect takes 1 second */
+        }
+
+        #videodaysel
+        {
+            color: rgb(1, 1, 1);	/* basically everything on the merch page has dark text */
+            background: rgb(255, 255, 255);		/* on bright background */
+        }
+
+        .markascompleted
+        {
+            width: 100%;	/* the checkout button uses the full width of the container */
+            padding: 20px;	/* with a good amount of space around the button text */
+            border: none;
+            background-color: #8babd0;
+            color: white;
+            font-size: 250%;
+            letter-spacing: 0.4px;	/* the larger font looks slighty squeezed, so add tiny space between letters */
+            cursor: pointer;	/* indicate to the user that it's clickable */
+        }
+
+        .markascompleted:hover, .markascompleted:active
+        {
+            color: black;	/* button text turns black upon hovering or clicking the button */
+        }
+
+        /* Animation for fade-in: zero to full opacity */
+        @keyframes fadeEffect
+        {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* create a 10 column grid layout */
+        /* for 10% steps of width adjustment of the (good layout control while keeping responsiveness) */
+        #dailyworkout
+        {
+            display: grid;	/* switch to grid mode */
+            grid-template-columns: repeat(10, 1fr);	/* create 10 equal width columns */
+        }
+
+        #workoutvideonav
+        {
+            grid-column: 1 / -1;	/* thumbnail slider uses full width */
+            grid-row: 1 / 1;		/* of row 1 */
+        }
+
+        #videoplayer
+        {
+            grid-column: 1 / 7;		/* columns 1 to (excluding) 7 */
+            grid-row: 2 / 2;		/* effectively the left 60% of row 2 */
+        }
+
+        #workoutvideodesc
+        {
+            grid-column: 1 / 7;	    /* columns 1 to (excluding) 7 */
+            grid-row: 3 / 3;		/* on row 3, below the video player */
+        }
+
+        #videodaysel
+        {
+            grid-column: 7 / -1;	/* columns 7 to last (10) */
+            grid-row: 2 / 4;		/* effectively the right 40% of rows 2 and 3, next to video+desc */
+        }
+    </style>
+</head>
+
+<!-- give the body a unique id so it can be referenced in the CSS,
+also call the Javascript to init the thumbnails and video player -->
+<body id="dailyworkout" onload="initSlideshow(); initWorkoutVideo();">
+	<!-- The videos are the main aspect of this portion of the page, qualifying it as an article -->
+	<article id="videoplayer">
+        <div class="video-container">
+            <iframe width="560" height="315" src=""
+                    id="vplayer" title="videoplayer" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+            </iframe>
+        </div>
+	</article>
+
+	<!-- The accompanying video description is responsively placed to the right or below the video player -->
+	<aside id="workoutvideodesc">
+		<!-- only one instance of .videoinfocontainer will be visible at any time -->
+		<div class="videoinfocontainer">	<!-- 1st video -->
+			<div class="videotitle">	<!-- this class gets a larger font to highlight the video title -->
+				Day 1, Exercise 1
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 2nd video -->
+			<div class="videotitle">
+				Day 1, Exercise 2
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 3rd video -->
+			<div class="videotitle">
+				Day 1, Exercise 3
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 4th video -->
+			<div class="videotitle">
+				Day 2, Exercise 1
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 5th video -->
+			<div class="videotitle">
+				Day 2, Exercise 2
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 6th video -->
+			<div class="videotitle">
+				Day 3, Exercise 1
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 7th video -->
+			<div class="videotitle">
+				Day 3, Exercise 2
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 8th video -->
+			<div class="videotitle">
+				Day 3, Exercise 3
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 9th video -->
+			<div class="videotitle">
+				Day 4, Exercise 1
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 10th video -->
+			<div class="videotitle">
+				Day 4, Exercise 2
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+		<div class="videoinfocontainer">	<!-- 11th video -->
+			<div class="videotitle">
+				Day 4, Exercise 3
+			</div>	<!-- end of title -->
+			<div class="videodesc">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                Excepteur sint occaecat cupidatat non proident,
+                sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</div> <!-- end of desc -->
+		</div>	<!-- end of container -->
+	</aside>
+
+	<!-- the thumbnail slider, based on slideshow code (reference at the start of this file and in report) -->
+	<article id="workoutvideonav">
+		<div id="workoutvideoheader">
+			<h2>Daily Workout</h2>
+		</div>
+		 <!-- Slideshow container -->
+		<div class="slideshow-container">
+			<!-- turning a slideshow into a thumb slider by using 3 images per slide with an overlap of 2,
+			each overlayed by a small-font, semi-transparent background title text,
+			all employing Javascript to dynamically replace the currently playing video by the selected one;
+			only one instance of .mySlides will be visible at any time -->
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(1);">Day 1, Exercise 1</div>
+				<div class="thumbtitle2" onclick="openVideo(2);">Day 1, Exercise 2</div>
+				<div class="thumbtitle3" onclick="openVideo(3);">Day 1, Exercise 3</div>
+				<img src="{% static 'img/th_d1_e1.png' %}" alt="thumbnail" onclick="openVideo(1);">
+				<img src="{% static 'img/th_d1_e2.png' %}" alt="thumbnail" onclick="openVideo(2);">
+				<img src="{% static 'img/th_d1_e3.png' %}" alt="thumbnail" onclick="openVideo(3);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(2);">Day 1, Exercise 2</div>
+				<div class="thumbtitle2" onclick="openVideo(3);">Day 1, Exercise 3</div>
+				<div class="thumbtitle3" onclick="openVideo(4);">Day 2, Exercise 1</div>
+				<img src="{% static 'img/th_d1_e2.png' %}" alt="thumbnail" onclick="openVideo(2);">
+				<img src="{% static 'img/th_d1_e3.png' %}" alt="thumbnail" onclick="openVideo(3);">
+				<img src="{% static 'img/th_d2_e1.png' %}" alt="thumbnail" onclick="openVideo(4);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(3);">Day 1, Exercise 3</div>
+				<div class="thumbtitle2" onclick="openVideo(4);">Day 2, Exercise 1</div>
+				<div class="thumbtitle3" onclick="openVideo(5);">Day 2, Exercise 2</div>
+				<img src="{% static 'img/th_d1_e3.png' %}" alt="thumbnail" onclick="openVideo(3);">
+				<img src="{% static 'img/th_d2_e1.png' %}" alt="thumbnail" onclick="openVideo(4);">
+				<img src="{% static 'img/th_d2_e2.png' %}" alt="thumbnail" onclick="openVideo(5);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(4);">Day 2, Exercise 1</div>
+				<div class="thumbtitle2" onclick="openVideo(5);">Day 2, Exercise 2</div>
+				<div class="thumbtitle3" onclick="openVideo(6);">Day 3, Exercise 1</div>
+				<img src="{% static 'img/th_d2_e1.png' %}" alt="thumbnail" onclick="openVideo(4);">
+				<img src="{% static 'img/th_d2_e2.png' %}" alt="thumbnail" onclick="openVideo(5);">
+				<img src="{% static 'img/th_d3_e1.png' %}" alt="thumbnail" onclick="openVideo(6);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(5);">Day 2, Exercise 2</div>
+				<div class="thumbtitle2" onclick="openVideo(6);">Day 3, Exercise 1</div>
+				<div class="thumbtitle3" onclick="openVideo(7);">Day 3, Exercise 2</div>
+				<img src="{% static 'img/th_d2_e2.png' %}" alt="thumbnail" onclick="openVideo(5);">
+				<img src="{% static 'img/th_d3_e1.png' %}" alt="thumbnail" onclick="openVideo(6);">
+				<img src="{% static 'img/th_d3_e2.png' %}" alt="thumbnail" onclick="openVideo(7);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(6);">Day 3, Exercise 1</div>
+				<div class="thumbtitle2" onclick="openVideo(7);">Day 3, Exercise 2</div>
+				<div class="thumbtitle3" onclick="openVideo(8);">Day 3, Exercise 3</div>
+				<img src="{% static 'img/th_d3_e1.png' %}" alt="thumbnail" onclick="openVideo(6);">
+				<img src="{% static 'img/th_d3_e2.png' %}" alt="thumbnail" onclick="openVideo(7);">
+				<img src="{% static 'img/th_d3_e3.png' %}" alt="thumbnail" onclick="openVideo(8);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(7);">Day 3, Exercise 2</div>
+				<div class="thumbtitle2" onclick="openVideo(8);">Day 3, Exercise 3</div>
+				<div class="thumbtitle3" onclick="openVideo(9);">Day 4, Exercise 1</div>
+				<img src="{% static 'img/th_d3_e2.png' %}" alt="thumbnail" onclick="openVideo(7);">
+				<img src="{% static 'img/th_d3_e3.png' %}" alt="thumbnail" onclick="openVideo(8);">
+				<img src="{% static 'img/th_d4_e1.png' %}" alt="thumbnail" onclick="openVideo(9);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(8);">Day 3, Exercise 3</div>
+				<div class="thumbtitle2" onclick="openVideo(9);">Day 4, Exercise 1</div>
+				<div class="thumbtitle3" onclick="openVideo(10);">Day 4, Exercise 2</div>
+				<img src="{% static 'img/th_d3_e3.png' %}" alt="thumbnail" onclick="openVideo(8);">
+				<img src="{% static 'img/th_d4_e1.png' %}" alt="thumbnail" onclick="openVideo(9);">
+				<img src="{% static 'img/th_d4_e2.png' %}" alt="thumbnail" onclick="openVideo(10);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(9);">Day 4, Exercise 1</div>
+				<div class="thumbtitle2" onclick="openVideo(10);">Day 4, Exercise 2</div>
+				<div class="thumbtitle3" onclick="openVideo(11);">Day 4, Exercise 3</div>
+				<img src="{% static 'img/th_d4_e1.png' %}" alt="thumbnail" onclick="openVideo(9);">
+				<img src="{% static 'img/th_d4_e2.png' %}" alt="thumbnail" onclick="openVideo(10);">
+				<img src="{% static 'img/th_d4_e3.png' %}" alt="thumbnail" onclick="openVideo(11);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(10);">Day 4, Exercise 2</div>
+				<div class="thumbtitle2" onclick="openVideo(11);">Day 4, Exercise 3</div>
+				<div class="thumbtitle3" onclick="openVideo(1);">Day 1, Exercise 1</div>
+				<img src="{% static 'img/th_d4_e2.png' %}" alt="thumbnail" onclick="openVideo(10);">
+				<img src="{% static 'img/th_d4_e3.png' %}" alt="thumbnail" onclick="openVideo(11);">
+				<img src="{% static 'img/th_d1_e1.png' %}" alt="thumbnail" onclick="openVideo(1);">
+			</div>
+
+			<div class="mySlides">
+				<div class="thumbtitle1" onclick="openVideo(11);">Day 4, Exercise 3</div>
+				<div class="thumbtitle2" onclick="openVideo(1);">Day 1, Exercise 1</div>
+				<div class="thumbtitle3" onclick="openVideo(2);">Day 1, Exercise 2</div>
+				<img src="{% static 'img/th_d4_e3.png' %}" alt="thumbnail" onclick="openVideo(11);">
+				<img src="{% static 'img/th_d1_e1.png' %}" alt="thumbnail" onclick="openVideo(1);">
+				<img src="{% static 'img/th_d1_e2.png' %}" alt="thumbnail" onclick="openVideo(2);">
+			</div>
+
+		  <!-- Next and previous buttons -->
+		  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+		  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+		</div>
+
+		<!-- The dots/circles -->
+		<div style="text-align:center">
+			<span class="dot" onclick="currentSlide(1)"></span>
+			<span class="dot" onclick="currentSlide(2)"></span>
+			<span class="dot" onclick="currentSlide(3)"></span>
+			<span class="dot" onclick="currentSlide(4)"></span>
+			<span class="dot" onclick="currentSlide(5)"></span>
+			<span class="dot" onclick="currentSlide(6)"></span>
+			<span class="dot" onclick="currentSlide(7)"></span>
+			<span class="dot" onclick="currentSlide(8)"></span>
+			<span class="dot" onclick="currentSlide(9)"></span>
+			<span class="dot" onclick="currentSlide(10)"></span>
+			<span class="dot" onclick="currentSlide(11)"></span>
+		</div> 
+	</article>
+
+	<!-- day selector -->
+	<aside id="videodaysel">
+		<div class="videodayselector">	<!-- first button has an id to simulate a click on it when loading page -->
+			<button class="videoday" onclick="jumpToDay(event,1)">Day 1</button>
+			<button class="videoday" onclick="jumpToDay(event,2)">Day 2</button>
+			<button class="videoday" onclick="jumpToDay(event,3)">Day 3</button>
+			<button class="videoday" onclick="jumpToDay(event,4)">Day 4</button>
+		</div>
+        <p></p>
+        <!-- the mark as completed button goes underneath the day selector -->
+        <button class="markascompleted" onclick="markAsCompleted()")>Mark As Completed</button>
+	</aside>
+
+</body>
 </html>

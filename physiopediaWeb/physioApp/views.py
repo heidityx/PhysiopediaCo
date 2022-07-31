@@ -21,6 +21,7 @@ def displaySignUp(request):
     template = loader.get_template('signUpPage.html')
     return HttpResponse(template.render())
 
+@csrf_exempt
 def displaySelection(request):
     template = loader.get_template('selection.html')
     return HttpResponse(template.render())

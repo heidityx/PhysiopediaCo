@@ -1,8 +1,145 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
-<body>
-    
-<h1>log test</h1>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Journey Log</title>
+    <script type="text/javascript"> 
 
+    /* When the user clicks on the button, 
+    toggle between hiding and showing the dropdown content */
+    function myFunction() 
+    {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+    
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) 
+    {
+      if (!event.target.matches('.dropbtn')) 
+      {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) 
+        {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) 
+          {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+    </script>
+    
+    <style>
+        .gridContainer 
+        {
+            display: grid;
+            justify-content: space-evenly;
+            grid-template-columns: auto auto;
+            gap: 10px;
+            background-color: #3498DB;
+              color: white;
+            padding: 10px;
+        
+        }
+        
+        .dropbtn 
+        {
+          background-color: #3498DB;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        
+        .dropbtn:hover, .dropbtn:focus 
+        {
+          background-color: #2980B9;
+        }
+        
+        .dropdown 
+        {
+          position: relative;
+          display: grid;
+          grid-template-columns: auto;
+          padding: 10px;
+          row-gap: 50px;
+        }
+        
+        .dropdown-content
+        {
+          display: none;
+          position: absolute;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          overflow: auto;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        
+        .dropdown-content a 
+        {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+        
+        
+        
+        .dropdown a:hover {background-color: #ddd;}
+        
+        .show {display: block;}
+    </style>
+
+</head>   
+
+<header>
+                  
+    <div class="navbar">
+         <a class="active" href="#Physiopedia">PHYSIOPEDIA</a> 
+         <a href="../currentMilestone/" >Current Milestone</a> 
+         <a href="#" >My Journey</a> 
+         <a href="../store/" >Store</a> 
+         <a href="../profile-settings/" >Profile</a>
+    </div>
+
+</header>
+
+<body>
+
+    <h1 style="text-align:center;"> My Journey Log</h1>
+    
+    <div class="gridContainer">
+        <div id="daysCompleted" class="logCounter">
+            Total Days Completed
+        </div>
+    
+        <div id="daysInCompleted" class="logCounter">
+            Total Days Incompleted
+        </div>	
+    </div>
+    
+    
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Day(x)(Name of Condition)</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#exercise">Exercise</a>
+        <a href="#exercise">Exercise</a>
+      </div>
+    </div>
+    
+    <div class="dropdown">
+      <button onclick="myFunction()" class="dropbtn">Day(x)(Name of Condition)</button>
+      <div id="myDropdown" class="dropdown-content">
+        <a href="#exercise">Exercise</a>
+        <a href="#exercise">Exercise</a>
+      </div>
+    </div> 
 </body>
 </html>

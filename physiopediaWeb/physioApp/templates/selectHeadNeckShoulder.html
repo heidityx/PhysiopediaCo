@@ -8,6 +8,11 @@
             <meta name="description" content="Selection page for physiotherapy exercises">
             <title>Selection Page</title>
             {% load static %}
+            <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
+            crossorigin="anonymous">
             <link rel="stylesheet" href="{% static './css/selection.css' %}">
             <link rel="stylesheet" href="{% static './css/bodyparts.css' %}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +20,7 @@
           
          </head>
     
-        <main>
+        
            <header>
                   
             <div class="navbar">
@@ -33,34 +38,65 @@
            <hr class="style15">
            <br>
              
+           <main>
                 <h1><b><i>Head, Neck and Shoulder conditions</i></b><h1>
 
-            <div class="selectbutton">
-                <P>Click One To Continue</P>
-            </div>
+                    <div class="selectbutton">
+                        <P>Click One To Continue</P>
+                    </div>
+        
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col">
+                          <div class="card ms-5 mt-4" style="width:15rem;">
+                            
+                            <div class="card-body p-5">
+                              <h2 class="card-title">A</h2>
+                              <p class="card-text fs-5">Acute wry neck pain</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card ms-5 mt-4" style="width:15rem;">
+                            
+                            <div class="card-body p-5">
+                              <h2 class="card-title">C</h2>
+                              <p class="card-text fs-5">Cervical postural syndrome</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card">
+                            
+                            <div class="card-body">
+                              <h2 class="card-title">C</h2>
+                              <p class="card-text">T.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card">
+                          
+                            <div class="card-body">
+                              <h5 class="card-title">D</h5>
+                              <p class="card-text">T</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
 
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition:Stiff Neck </a></u>
-                <br><small>It causes stiffness and pain to the neck.Neck pain can also come from regions around the neck,like the shoulder, jaw, head and upper arms.Activites such as long hours facing the computer, having wrong posture while reading or watching TV or even sleeping in an uncomfortable position. </small></p>
-                
-            </div>
-          
-
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition:Shoulder dislocation</a></u>
-                <br><small>A shoulder dislocation is when the ball of the shoulder joint pops out of the shoulder socket.The dislocation can either be an anterior or posterior dislocation where the arm appears out of position either pointing forwards or backwards. </small></p>
-                
-            </div>
-
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition:Cervical postural syndrome </a></u>
-                <br><small>This condition is often characterised by rounded shoulders which causes burning or aching across neck and shoulders.Cervical postural syndrome is caused by adopting poor posture over a prolonged period of time.Activites such as daily driving, cooking or sitting at desk with poor posture over a prolonged period of time are likely to cause such injury.  </small></p>
-                
-            </div>
-
-
+               <script
+               src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" 
+               integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" 
+               crossorigin="anonymous">
+              </script>
+           
+              <script 
+              src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" 
+              integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" 
+              crossorigin="anonymous">
+              </script>
     
-           </main>
+             </main>
            
            <footer>
             <div class="footer">
@@ -69,6 +105,7 @@
               
           </div>
            </footer>
+           
           
          
     </html>

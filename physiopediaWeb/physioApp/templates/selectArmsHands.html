@@ -1,4 +1,5 @@
 
+    
     <!DOCTYPE html>
     <html>
     
@@ -8,6 +9,11 @@
             <meta name="description" content="Selection page for physiotherapy exercises">
             <title>Selection Page</title>
             {% load static %}
+            <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
+            crossorigin="anonymous">
             <link rel="stylesheet" href="{% static './css/selection.css' %}">
             <link rel="stylesheet" href="{% static './css/bodyparts.css' %}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +21,7 @@
           
          </head>
     
-        <main>
+        
            <header>
                   
             <div class="navbar">
@@ -33,42 +39,102 @@
            <hr class="style15">
            <br>
              
+           <main>
                 <h1><b><i>Arms and hands conditions</i></b><h1>
 
-            <div class="selectbutton">
-                <P>Click One To Continue</P>
-            </div>
+                    <div class="selectbutton">
+                        <P>Click One To Continue</P>
+                    </div>
+        
+                    <div class="row row-cols-4 row-cols-md-3 g-4">
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                            <div class="card-body p-5">
+                              <h2 class="card-title">C</h2>
+                              <p class="card-text fs-5">Carpal tunnel</p>
+                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                            <div class="card-body p-5">
+                              <h2 class="card-title">C</h2>
+                              <p class="card-text fs-5">Colles fracture of the wrist</p>
+                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                            <div class="card-body p-5">
+                              <h2 class="card-title">D</h2>
+                              <p class="card-text fs-5">Dequervain's tenosynovitus</p>
+                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                          
+                            <div class="card-body p-5">
+                              <h2 class="card-title">D</h2>
+                              <p class="card-text fs-5">Dislocated finger</p>
+                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                              <div class="card-body p-5">
+                                <h2 class="card-title">H</h2>
+                                <p class="card-text fs-5">Hyperextension injury</p>
+                                <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                              <div class="card-body p-5">
+                                <h2 class="card-title">T</h2>
+                                <p class="card-text fs-5">Trigger finger</p>
+                                <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                      
+                        
+                          
 
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition:Dupuytren's contracture </a></u>
-                <br><small>Finger will start to bend towards the palm and cannot be fully straightened,the most common factor contributing to this injury is due to genetics and 70% of the patients have past family history of the condition.  </small></p>
-                
-            </div>
-          
-
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition:Broken finger</a></u>
-                <br><small>Fingers are easily broken or injured when engaging in daily activities.It occurs when the finger is bent forcefully in the wrong direction(such as sideways force) or collision with another person.  </small></p>
-                
-            </div>
-
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition:Trigger finger </a></u>
-                <br><small>Trigger finger occurs when the tendon in the finger or thumb thickens and gets caught when the finger is bent towards the palm, resulting in a painful clicking or locking.There is often no apparent cause of trigger finger,however is more common for women who have injured their finger before. </small></p>
-                
-            </div>
-
-
-           </main>
+               <script
+               src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" 
+               integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" 
+               crossorigin="anonymous">
+              </script>
            
-           <footer>
-            <div class="footer">
+              <script 
+              src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" 
+              integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" 
+              crossorigin="anonymous">
+              </script>
+            
+            <footer>
+              <div class="footer">
+      
+                <p><small>&copy; Copyright {2022}, PHYSIOPEDIA</small> </p>
+                
+            </div>
+             </footer>
+            
     
-              <p><small>&copy; Copyright {2022}, PHYSIOPEDIA</small> </p>
-              
-          </div>
-           </footer>
+      
+          
           
          
     </html>
-

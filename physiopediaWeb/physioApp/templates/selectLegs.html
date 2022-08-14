@@ -8,6 +8,11 @@
             <meta name="description" content="Selection page for physiotherapy exercises">
             <title>Selection Page</title>
             {% load static %}
+            <link 
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
+            crossorigin="anonymous">
             <link rel="stylesheet" href="{% static './css/selection.css' %}">
             <link rel="stylesheet" href="{% static './css/bodyparts.css' %}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,7 +20,7 @@
           
          </head>
     
-        <main>
+        
            <header>
                   
             <div class="navbar">
@@ -33,42 +38,99 @@
            <hr class="style15">
            <br>
              
-                <h1><b><i>Leg Conditions</i></b><h1>
+           <main>
+                <h1><b><i>Legs conditions</i></b><h1>
 
-            <div class="selectbutton">
-                <P>Click One To Continue</P>
-            </div>
+                    <div class="selectbutton">
+                        <P>Click One To Continue</P>
+                    </div>
+        
+                    <div class="row row-cols-4 row-cols-md-3 g-4">
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                            <div class="card-body p-5">
+                              <h2 class="card-title">A</h2>
+                              <p class="card-text fs-5">ACL injury</p>
+                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                            <div class="card-body p-5">
+                              <h2 class="card-title">B</h2>
+                              <p class="card-text fs-5">Bakers injury</p>
+                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                            <div class="card-body p-5">
+                              <h2 class="card-title">C</h2>
+                              <p class="card-text fs-5">Calf pain</p>
+                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                          
+                            <div class="card-body p-5">
+                              <h2 class="card-title">C</h2>
+                              <p class="card-text fs-5">Calf strain</p>
+                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                            <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                              <div class="card-body p-5">
+                                <h2 class="card-title">C</h2>
+                                <p class="card-text fs-5">Compartment syndrome</p>
+                                <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                            
+                              <div class="card-body p-5">
+                                <h2 class="card-title">S</h2>
+                                <p class="card-text fs-5">Shin pain</p>
+                                <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
 
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition: Shin Splints</a></u>
-                <br><small> Normally occured in runners who run over a long distance on hard surfaces,other factors such as wrong posture and body alightment can contribute to the injury as well.</small></p>
-                
-            </div>
-          
-
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition: Calf Strain</a></u>
-                <br><small>A calf strain may also be caused by gradual wear and tear associated with repetitive jumping and distance running or walking. For example: a sudden increase in speed from a fixed position or when lunging forward when playing tennis or squash can cause calf strain. </small></p>
-                
-            </div>
-
-            <div>
-                <p style="padding: 10px; border: 5px solid red;"><u><a href="../currentMilestone/">Name of condition: Quad Pain</a></u>
-                <br><small>Quad pain is often caused by a direct blow to the muscle during sporting activities.If the quad muscles have torn (muscle strain) the site of pain is usually well localised in the front of the thigh.  </small></p>
-                
-            </div>
-
-            
-           </main>
+               <script
+               src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" 
+               integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" 
+               crossorigin="anonymous">
+              </script>
            
-           <footer>
-            <div class="footer">
+              <script 
+              src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" 
+              integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" 
+              crossorigin="anonymous">
+              </script>
+            
+            <footer>
+              <div class="footer">
+      
+                <p><small>&copy; Copyright {2022}, PHYSIOPEDIA</small> </p>
+                
+            </div>
+             </footer>
+            
     
-              <p><small>&copy; Copyright {2022}, PHYSIOPEDIA</small> </p>
-              
-          </div>
-           </footer>
+      
+          
           
          
     </html>
-

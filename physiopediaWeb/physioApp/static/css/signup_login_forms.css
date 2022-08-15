@@ -1,3 +1,4 @@
+
 html, body {
     height: 100%;
 }
@@ -37,6 +38,7 @@ form {
     box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
     background: #ebebeb; 
 }
+
 .info-item {
     width: 100%;
 }
@@ -117,5 +119,10 @@ button:hover {
 }
 
 .container{
+    display: flex;
+    justify-content: center;
+}
+
+.link{
     padding-left: 25%;
 }

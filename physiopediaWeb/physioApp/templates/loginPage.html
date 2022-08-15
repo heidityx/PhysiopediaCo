@@ -6,27 +6,28 @@
         <link rel="stylesheet" href="{% static './css/signup_login_forms.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-        </head>
+    </head>
 <body>
 
 {% block content %}
-<center>
-<form style="max-width:550px;margin:auto" action="../selections/" class="forms" method="post">
+
+<form style="max-width:50%;margin-left:23%;padding-left:5%;" action="../selections/" class="forms" method="post">
     {% csrf_token %}
     <label for="email">EMAIL</label><br>
     <input type="email" id="email" name="email"><br><br>
     <label for="password">PASSWORD</label><br>
     <input type="password" id="password" name="password"><br>
-    <input class="checkbox" type="checkbox"><label for="checkbox">REMEMBER ME</label><br><br>
-    <input type="submit" class="btn" value="SUBMIT"></button>
+    <label>   f</label><input class="checkbox" type="checkbox"><label for="checkbox">REMEMBER ME</label><br><br>
+    <label>   f</label><input type="submit" class="btn" value="SUBMIT"></button>
 </form>
 <br>
 <div>
-    <div>
-        <a href="../signUp">CREATE ACCOUNT</a> <a class="container" href="">FORGOT PASSWORD</a>
+    <div class="container">
+        <a href="../signUp">CREATE ACCOUNT</a>
+        <a class="link" href="">FORGOT PASSWORD</a>
     </div>
 </div>
-</center>
+
 {% endblock %}
 
 </body>

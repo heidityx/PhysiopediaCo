@@ -11,11 +11,17 @@
 <body>
 
 {% block content %}
-<center>
-<form style="max-width:550px;margin:auto" action="../login/" class="forms" method="post">
+<form style="max-width:50%;margin-left:23%;" action="../login/" class="forms" method="post">
     {% csrf_token %}
     <br>
-    <label for="fname">FIRST NAME*</label> <label for="lname">LAST NAME*</label><br><br>
+    <div class="info">
+        <div class="info-item">
+            <label for="fname">FIRST NAME*</label>
+        </div>
+        <div class="info-item">
+            <label for="lname">LAST NAME*</label><br>
+        </div>
+    </div>
     <div class="info">
         <div class="info-item">
           <label class="icon" for="fname"><i class="fas fa-user"></i></label>
@@ -47,7 +53,14 @@
             <input type="password" name="password" id="password" required/>
         </div>
     </div>
-    <label for="birthday">BIRTHDAY*</label> <label for="gender">GENDER*</label><br>
+    <div class="info">
+        <div class="info-item">
+            <label for="birthday">BIRTHDAY*</label>
+        </div>
+        <div class="info-item">
+            <label for="gender">GENDER*</label><br>
+        </div>
+    </div>
         <div class="info">
             <div  class="info-item">
               <label class="icon" for="birthday"><i class="fas fa-calendar"></i></i></label>
@@ -62,7 +75,14 @@
                 </select>
             </div>
         </div>
-        <label for="phone">MOBILE NO.</label> <label for="phone">FOR ALERTS AND REMINDERS</label> <label for="healthcare">HEALTHCARE INSTITUTE*</label><br>
+        <div class="info">
+            <div class="info-item">
+                <label for="phone">MOBILE NO.</label> <label for="phoneAlert" class="smallerFont">FOR ALERTS AND REMINDERS</label>
+            </div>
+            <div class="info-item">
+                <label for="healthcare">HEALTHCARE INSTITUTE*</label><br>
+            </div>
+        </div>
         <div class="info">
             <div  class="info-item">
               <label class="icon" for="phone"><i class="fas fa-phone"></i></label>
@@ -73,13 +93,12 @@
             <input type="text" name="healthcare" id="healthcare" required/>
       </div>
     </div>
-    <input type="submit" class="btn" value="SUBMIT"></input>
+    <input type="submit" class="btn-2" value="SUBMIT"></input>
 </form>
 <br>
-<div>
-    <a href="../login">HAVE AN ACCOUNT? SIGN IN</a> <a class="container" href="">LEARN MORE ABOUT WHY WE COLLECT INFORMATION</a>
+<div class="container">
+    <a href="../login">HAVE AN ACCOUNT? SIGN IN</a> <a class="link-2" href="">LEARN MORE ABOUT WHY WE COLLECT INFORMATION</a>
 </div>
-</center>
 {% endblock %}
 
 </body>

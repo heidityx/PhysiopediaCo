@@ -131,6 +131,10 @@ button:hover {
     padding-left: 20%;
 }
 
+.link-3{
+    padding-left: 5%;
+}
+
 .btn{
     margin-left: 1%;
 }
@@ -141,4 +145,51 @@ button:hover {
 
 .smallerFont{
     font-size: 10px;
+}
+
+#logo{
+    margin-left: 37%;
+    width: 30%;
+    height: auto;
+}
+
+.textContainer{
+    margin-left: 25%;
+}
+
+#leftPulse{
+    width: 30%;
+    height: auto;
+}
+
+#rightPulse{
+    width: 30%;
+    height: auto;
+    margin-bottom: 1%;
+}
+
+#text{
+    width: 10%;
+    height: auto;
+    margin-bottom: 4%;
+}
+
+#footer{
+    background-color: #cbc9c9;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 96%;
+    float: left;
+}
+
+#footerspace{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+p{
+    margin: 0%;
 }

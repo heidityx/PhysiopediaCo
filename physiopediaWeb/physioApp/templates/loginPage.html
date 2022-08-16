@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html>
-
-    <head>
-        {% load static %}
-        <link rel="stylesheet" href="{% static './css/signup_login_forms.css' %}">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    </head>
-<body>
-
+{% include "./loginHeader.html" %}
 {% block content %}
-
 <form style="max-width:50%;margin-left:23%;padding-left:5%;" action="../selections/" class="forms" method="post">
     {% csrf_token %}
     <label for="email">EMAIL</label><br>
@@ -31,4 +20,4 @@
 {% endblock %}
 
 </body>
-</html>
+{% include "./loginSignupFooter.html" %}

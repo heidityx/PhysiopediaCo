@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static './css/signup_login_forms.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-</head>
-
-<body>
-
+{% include "./signupHeader.html" %}
 {% block content %}
-<form style="max-width:50%;margin-left:23%;" action="../login/" class="forms" method="post">
+<form style="max-width:50%;margin-left:25%;" action="../login/" class="forms" method="post">
     {% csrf_token %}
-    <br>
     <div class="info">
         <div class="info-item">
             <label for="fname">FIRST NAME*</label>
@@ -97,9 +85,7 @@
 </form>
 <br>
 <div class="container">
-    <a href="../login">HAVE AN ACCOUNT? SIGN IN</a> <a class="link-2" href="">LEARN MORE ABOUT WHY WE COLLECT INFORMATION</a>
+    <a class="link-3" href="../login">HAVE AN ACCOUNT? SIGN IN</a> <a class="link-2" href="">LEARN MORE ABOUT WHY WE COLLECT INFORMATION</a>
 </div>
 {% endblock %}
-
-</body>
-</html>
+{% include "./loginSignupFooter.html" %}

@@ -14,4 +14,5 @@ urlpatterns = [
     path('log/', views.displayLog, name='displayLog'),
     path('profile-settings/', views.displaySettings, name='displaySettings'),
     path('store/', views.displayStore, name='displayStore'),
+    path('legal/', views.displayLegal, name='displayLegal'),
 ]

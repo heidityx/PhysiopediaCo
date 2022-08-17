@@ -58,3 +58,7 @@ def displaySettings(request):
 def displayStore(request):
     template = loader.get_template('store.html')
     return HttpResponse(template.render())
+
+def displayLegal(request):
+    template = loader.get_template('legal.html')
+    return HttpResponse(template.render())

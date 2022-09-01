@@ -15,6 +15,7 @@ PROBLEMS NOT SOLVED:
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% include "./header.html" %}
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>My Journey Log</title>
@@ -113,14 +114,6 @@ PROBLEMS NOT SOLVED:
 </head>   
 
 <header>
-                  
-    <div class="navbar">
-         <a class="active" href="#Physiopedia">PHYSIOPEDIA</a> 
-         <a href="../currentMilestone/" >Current Milestone</a> 
-         <a href="#" >My Journey</a> 
-         <a href="../store/" >Store</a> 
-         <a href="../profile-settings/" >Profile</a>
-    </div>
 
 </header>
 
@@ -154,5 +147,6 @@ PROBLEMS NOT SOLVED:
         <a href="#exercise">Exercise</a>
       </div>
     </div> 
+    <br><br>
 </body>
-</html>
+{% include "./footer.html" %}

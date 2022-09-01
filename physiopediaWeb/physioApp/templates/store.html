@@ -435,36 +435,56 @@
             grid-template-columns: repeat(10, 1fr);	/* create 10 equal width columns */
         }
         
+        #globalpgheader
+        {
+            grid-column: 1 / -1;	/* header occupies all columns ('first from left' to 'first from right') */
+            grid-row: 1 / 1;		/* header is on row 1 */
+        }
+
+        #globalpghdrimg
+        {
+            grid-column: 1 / -1;	/* header image occupies all columns below header */
+            grid-row: 2 / 2;		/* header image is on row 2 */
+        }
+
         #merchcatsel
         {
             grid-column: 1 / 4;		/* columns 1 to (excluding) 4 */
-            grid-row: 1 / 1;		/* effectively the left 30% of row 1, below the nav */
+            grid-row: 3 / 3;		/* effectively the left 30% of row 3, below the header */
         }
         
         #merchproducts
         {
             grid-column: 4 / -1;	/* columns from 4 to end */
-            grid-row: 1 / 98;		/* spanning rows 3 to just above the footer */
+            grid-row: 3 / 98;		/* spanning rows 3 to just above the footer */
         }
         
         #merchcart
         {
             grid-column: 1 / 4;		/* columns 1 to (excluding) 4 */
-            grid-row: 2 / 2;		/* effectively the left 30% of row 2, below the category selection */
+            grid-row: 4 / 4;		/* effectively the left 30% of row 4, below the category selection */
         }
         
         #merchcheckout
         {
             grid-column: 1 / 4;		/* columns 1 to (excluding) 4 */
-            grid-row: 3 / 3;		/* effectively the left 30% of row 5, below the shopping cart */
+            grid-row: 5 / 5;		/* effectively the left 30% of row 5, below the shopping cart */
         }
 
+        #globalpgfooter
+        {
+            grid-column: 1 / -1;	/* footer occupies all columns ('first from left' to 'first from right') */
+            grid-row: 99 / 99;		/* footer is on last row */
+        }
     </style>
 </head>
 
 <!-- give the body a unique id so it can be referenced in the CSS,
 also call the Javascript to apply the color scheme and open the default merch category -->
 <body id="anmerch" onload="initMerch();">
+
+        {% include "./header.html" %}
+
 	<!-- the merch category selection goes to the left top for desktop resolutions, top for mobile -->
 	<aside id="merchcatsel">
 		<h2>Product Categories</h2>
@@ -931,5 +951,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 		<button class="merchcheckout" onclick="checkOutCart()")>Checkout</button>
 	</aside>
 
+
+        {% include "./footer.html" %}
 </body>
 </html>

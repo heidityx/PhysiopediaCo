@@ -469,10 +469,9 @@ also call the Javascript to apply the color scheme and open the default merch ca
 	<aside id="merchcatsel">
 		<h2>Product Categories</h2>
 		<div class="merchcatselector">	<!-- first button has an id to simulate a click on it when loading page -->
-			<button class="merchcategory" id="initialmerchcat" onclick="openMerchCat(event, 'clothing')">Clothing</button>
-			<button class="merchcategory" onclick="openMerchCat(event, 'mugs')">Mugs</button>
-			<button class="merchcategory" onclick="openMerchCat(event, 'headphones')">Headphones</button>
-			<button class="merchcategory" onclick="openMerchCat(event, 'pillows')">Pillows</button>
+			<button class="merchcategory" id="initialmerchcat" onclick="openMerchCat(event, 'Books/DVDs category')">Books/DVDs</button>
+			<button class="merchcategory" onclick="openMerchCat(event, 'Support Equipment')">Support Equipment</button>
+			<button class="merchcategory" onclick="openMerchCat(event, 'Our Merch')">Our Merch</button>
 		</div>
 	</aside>
 
@@ -482,11 +481,11 @@ also call the Javascript to apply the color scheme and open the default merch ca
 
 		<!-- +++++++++++++ Books/DVDs category +++++++++++++++ -->
 		<div id="Books/DVDs category" class="merchcontent">
-			<h3>Books/DVDs category</h3>
+			<h3>Books/DVDs</h3>
 		    <div class="merchitems">	<!-- elements within this wrapper are aligned in a row with wrapping -->
 				<div class="merchitem">	<!-- items have a fixed with, the number of items per line is dynamic -->
 					<div class="merchimage">
-						<img src="img/shop_c1.jpg" alt="Fitball Exercises CD">
+						<img src="{% static '/images/shop_c1.jpg' %}" alt="Fitball Exercises CD">
 					</div>
 					<div class="merchfacts">	<!-- wrapper to switch to horizontal layout name + price -->
 						<div class="merchname">
@@ -499,7 +498,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 					<div class="merchdesc">
 						Physiotherapeautic Exercises to do with a Fitball
 					</div>
-					<div class="merchcondition">
+					<div class="merchcondition" style="margin-bottom: 54%;">
 						<b>Suitability: </b>Suitable for all
 					</div>
 					<div class="merchbuy">	<!-- employ Javascript to simulate adding the item to the shopping cart -->
@@ -509,7 +508,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_c2.jpg" alt="Pelvic Floor Exercises CD">
+						<img src="{% static '/images/shop_c2.jpg' %}" alt="Pelvic Floor Exercises CD">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">
@@ -523,7 +522,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 						Inside Out Strength is a Physiotherapist-guided workout DVD for women seeking to exercise safely and avoid pelvic floor overload. This workout is for women seeking effective beginners and intermediate strength exercises that avoid worsening pelvic floor problems. <br>
 						&nbsp;
 					</div>
-					<div class="merchsize">
+					<div class="merchsize" style="margin-bottom: 22%;">
 						<b>Suitability: </b>Suitable for Women
 					</div>
 					<div class="merchbuy">
@@ -533,7 +532,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_c3.jpg" alt="Tai Chi Chuan CD">
+						<img src="{% static '/images/shop_c3.jpg' %}" alt="Tai Chi Chuan CD">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">
@@ -557,7 +556,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_c4.jpg" alt="Physiotherapy for Children Book">
+						<img src="{% static '/images/shop_c4.jpg' %}" alt="Physiotherapy for Children Book">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">
@@ -591,7 +590,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 		    <div class="merchitems">
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_e1.jpg" alt="Fascia and Foot Stretcher">
+						<img src="{% static '/images/shop_e1.jpg' %}" alt="Fascia and Foot Stretcher">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">
@@ -615,7 +614,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 				
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_e2.jpg" alt="Weight Cuff">
+						<img src="{% static '/images/shop_e2.jpg' %}" alt="Weight Cuff">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">
@@ -628,7 +627,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 					<div class="merchdesc">
 						 With this new ankle weights set from MAKTREX INTERNATIONAL, you can put a spring in your step towards renewed well being. These wearable weights are equally as effective for rehab work and physical therapy as they are for sports training and everyday fitness regimens. 
 					</div>
-					<div class="merchsize">
+					<div class="merchsize" style="margin-bottom: 49%;">
 						<b>Weight: </b>4.5 KG.
 					</div>
 					<div class="merchbuy">
@@ -638,7 +637,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 				
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_e3.jpg" alt="Fitball">
+						<img src="{% static '/images/shop_e3.jpg' %}" alt="Fitball">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">
@@ -651,7 +650,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 					<div class="merchdesc">
 						Anti-burst, slip resistant and easy to clean.
 					</div>
-					<div class="merchsize">
+					<div class="merchsize" style="margin-bottom: 40%;">
 						<b>Sizes: </b>200 Pound Capacity.
 					</div>
 					<div class="merchbuy">
@@ -672,7 +671,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 		    <div class="merchitems">
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_s1.jpg" alt="Fitness Set M">
+						<img src="{% static '/images/shop_s1.jpg' %}" alt="Fitness Set M">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">
@@ -695,7 +694,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 				
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_s2.jpg" alt="Fitness Set W">
+						<img src="{% static '/images/shop_s2.jpg' %}" alt="Fitness Set W">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">
@@ -708,7 +707,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 					<div class="merchdesc">
 						A set of Physiopedia.co fitness set for Women. Comfortable, durable and stylish.
 					</div>
-					<div class="merchsize">
+					<div class="merchsize" style="margin-bottom: 15%;">
 						<b>Size: </b>One fits all, 48&quot; L
 					</div>
 					<div class="merchbuy">
@@ -717,7 +716,7 @@ also call the Javascript to apply the color scheme and open the default merch ca
 				</div>	<!-- end of Our Merch item #2 -->
 				<div class="merchitem"> 
 					<div class="merchimage">
-						<img src="img/shop_s3.jpg" alt="Fitness Set C">
+						<img src="{% static '/images/shop_s3.jpg' %}" alt="Fitness Set C">
 					</div>
 					<div class="merchfacts">
 						<div class="merchname">

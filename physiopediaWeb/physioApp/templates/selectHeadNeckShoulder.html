@@ -13,73 +13,81 @@
             rel="stylesheet" 
             integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" 
             crossorigin="anonymous">
+            
             <link rel="stylesheet" href="{% static './css/selection.css' %}">
-            <link rel="stylesheet" href="{% static './css/bodyparts.css' %}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             
-          
+          <style>
+            button{
+              color: black;
+              font-size: 25px;
+              text-align: center;
+              margin-left: 660px;
+              border: 2px solid mediumvioletred;
+            }
+          </style>
          </head>
     
-        
+        <main>
            <header>
                   
             {% include "./header.html" %}
  
            </header>
-    
-           <br>
-           <hr class="style15">
-           <br>
+  
              
-           <main>
+           
                 <h1><b><i>Head, Neck and Shoulder conditions</i></b><h1>
 
-                    <div class="selectbutton">
-                        <P>Click One To Continue</P>
-                    </div>
+                   
         
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
                             
                             <div class="card-body p-5">
                               <h2 class="card-title">A</h2>
-                              <p class="card-text fs-5">Acute wry neck pain</p>
-                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                              <a style="color:wheat" href="../currentMilestone/"><h5>Acute wry neck pain</h5></a>
+                             
+                             
                             </div>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
                             
                             <div class="card-body p-5">
                               <h2 class="card-title">C</h2>
-                              <p class="card-text fs-5">Cervical postural syndrome</p>
-                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                              <a style="color: wheat" href="../currentMilestone/"><h5>Cervical postural syndrome</h5></a>
                             </div>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
                             
                             <div class="card-body p-5">
                               <h2 class="card-title">N</h2>
-                              <p class="card-text fs-5">Nerve root pain</p>
-                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                              
+                              <a style="color: wheat" href="../currentMilestone/"><h5>Nerve root pain</h5></a>
                             </div>
                           </div>
                         </div>
                         <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:15rem;">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
                           
                             <div class="card-body p-5">
                               <h2 class="card-title">S</h2>
-                              <p class="card-text fs-5">Stiff neck</p>
-                              <a href="../currentMilestone/" class="btn btn-primary">Click for more info</a>
+                              
+                              <a style="color: wheat" href="../currentMilestone/"><h5>Stiff neck</h5></a>
                             </div>
                           </div>
                         </div>
                       </div>
+
+                      
+                      <button type="button">Submit</button>
+
+
 
                <script
                src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" 
@@ -93,13 +101,14 @@
               crossorigin="anonymous">
               </script>
             
+            
+            </main>
+      
             <footer>
               {% include "./footer.html" %}
              </footer>
-            
-    
-      
-          
+
+         
           
          
     </html>

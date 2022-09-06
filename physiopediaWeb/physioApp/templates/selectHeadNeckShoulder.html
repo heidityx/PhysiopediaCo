@@ -51,7 +51,7 @@
 
             var status = false;
 
-            var warningMsg = document.getElementById("warningMsg");
+            
                
 
                if(bodyPartExercise != "" || bodyPartExercise2 != "" || bodyPartExercise3 != "" || bodyExercise4 != ""){
@@ -60,6 +60,11 @@
                if (status == true){
                 alert("Backend not supported yet!");
                }
+
+               if (window.confirm('If you click "ok" you would be redirected . Cancel will load this website ')) 
+                {
+                window.location.href='../currentMilestone/';
+                };
 
               
               }
@@ -167,7 +172,7 @@
                   
                      <button class="btt" onclick="submission();">Submit</button>
                       <br><br>
-                      <p id="warningMsg" style="color:red;"></p>
+                      
 
                     
 

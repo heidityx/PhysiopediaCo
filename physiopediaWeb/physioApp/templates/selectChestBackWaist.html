@@ -17,15 +17,7 @@
             <link rel="stylesheet" href="{% static './css/bodyparts.css' %}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             
-            <style>
-              button{
-                color: black;
-                font-size: 25px;
-                text-align: center;
-                margin-left: 660px;
-                border: 2px solid mediumvioletred;
-              }
-            </style>
+            
          </head>
         <main>
         
@@ -39,71 +31,68 @@
            
                 <h1><b><i>Chest, Back and Waist conditions</i></b><h1>
 
-                    
-                    <div class="row row-cols-4 row-cols-md-3 g-4">
-                        <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
-                            
-                            <div class="card-body p-5">
-                              <h2 class="card-title">A</h2>
-                              
-                              <a style="color: wheat" href="../currentMilestone/"><h5>Acute low back pain</h5></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
-                            
-                            <div class="card-body p-5">
-                              <h2 class="card-title">B</h2>
-                              
-                              <a style="color: wheat" href="../currentMilestone/"><h5>Back strain</h5></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
-                            
-                            <div class="card-body p-5">
-                              <h2 class="card-title">D</h2>
-                              
-                              <a style="color: wheat" href="../currentMilestone/"><h5>Disc prolapse</h5></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
-                          
-                            <div class="card-body p-5">
-                              <h2 class="card-title">P</h2>
-                              
-                              <a style="color: wheat" href="../currentMilestone/"><h5>Piriformis syndrome</h5></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                            <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
-                            
-                              <div class="card-body p-5">
-                                <h2 class="card-title">S</h2>
-                               
-                                <a style="color: wheat" href="../currentMilestone/"><h5>Slipped disk</h5></a>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
-                            
-                              <div class="card-body p-5">
-                                <h2 class="card-title">S</h2>
-                                
-                                <a style="color: wheat" href="../currentMilestone/"><h5>Sacroiliac joint pain</h5></a>
-                              </div>
-                            </div>
-                          </div>
-                    </div>
+                  <div class="row row-cols-1 row-cols-md-2 g-4">
+                    <div class="col">
+                      <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
+                        
+                        <div class="card-body p-5">
                       
-                    <button type="button">Submit</button>
+
+                          <div id="bodyPartExercise"> 
+                            <p><strong><h5>A- <br>Acute back pain</h5></strong></p>
+                              </div>
+                             <button class="sel" type="button" onclick="changeColor()">select<button>
+                      
+                    
+                    
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col">
+                      <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
+                        
+                        <div class="card-body p-5">
+                          
+                          <div id="bodyPartExercise2"> 
+                            <p><strong><h5>B- <br>Back strain</h5></strong></p>
+                              </div>
+                             <button class="sel" type="button" onclick="changeColor2()">Select<button>
+                      
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
+                        
+                        <div class="card-body p-5">
+                          
+                          <div id="bodyPartExercise3"> 
+                            <p><strong><h5>D- <br>Disc prolapse</h5></strong></p>
+                              </div>
+                             <button class="sel" type="button" onclick="changeColor3()">Select<button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
+                        
+                        <div class="card-body p-5">
+                          
+                          <div id="bodyPartExercise3"> 
+                            <p><strong><h5>S- <br>Slipped disk</h5></strong></p>
+                              </div>
+                             <button class="sel" type="button" onclick="changeColor4()">Select<button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                  
+                 <!-- <button class="submit" type="btn">Submit</button>-->
+                 <button class="btt" onclick="submission();">Submit</button>
+                  <br><br>
+                  <p id="warningMsg" style="color:red;"></p>
+
                           
 
                <script

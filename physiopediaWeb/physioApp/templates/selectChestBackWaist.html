@@ -17,7 +17,77 @@
             <link rel="stylesheet" href="{% static './css/bodyparts.css' %}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             
-            
+            <style>
+              .myClass{
+                color:wheat;
+             }
+             .myClass2{
+              color: wheat;
+             }
+             .myClass3{
+              color: wheat;
+             }
+             .myClass4{
+              color: wheat;
+             }
+             .btt{
+             color: black;
+                  font-size: 35px;
+                  text-align: center;
+                  margin-left: 660px;
+                  margin-top: 70px;
+                  border: 2px solid mediumvioletred;
+             }
+    
+             .sel{
+              font-size: 30px;
+              width: 100px;
+              font-family:'Times New Roman', Times, serif
+             }
+            </style>
+
+<script type="text/javascript">
+  function submission(){
+
+   var status = false;
+
+   var warningMsg = document.getElementById("warningMsg");
+      
+
+      if(bodyPartExercise != "" || bodyPartExercise2 != "" || bodyPartExercise3 != "" || bodyExercise4 != ""){
+       status = true;
+      }
+      if (status == true){
+       alert("Backend not supported yet!");
+      }
+
+     
+     }
+
+  
+
+      function changeColor(){
+       var element = document.getElementById("bodyPartExercise");
+       element.className = "myClass";
+       }
+
+       function changeColor2(){
+       var element = document.getElementById("bodyPartExercise2");
+       element.className = "myClass2";
+       }
+       
+       function changeColor3(){
+       var element = document.getElementById("bodyPartExercise3");
+       element.className = "myClass3";
+       }
+
+       function changeColor4(){
+       var element = document.getElementById("bodyPartExercise4");
+       element.className = "myClass4";
+       }
+       
+
+ </script>
          </head>
         <main>
         
@@ -88,7 +158,7 @@
                     </div>
                 </div>
                   
-                 <!-- <button class="submit" type="btn">Submit</button>-->
+                 
                  <button class="btt" onclick="submission();">Submit</button>
                   <br><br>
                   <p id="warningMsg" style="color:red;"></p>

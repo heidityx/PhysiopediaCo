@@ -16,9 +16,9 @@
             
             <link rel="stylesheet" href="{% static './css/selection.css' %}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            
+           <!--
           <style>
-            button{
+            .submit{
               color: black;
               font-size: 25px;
               text-align: center;
@@ -26,6 +26,81 @@
               border: 2px solid mediumvioletred;
             }
           </style>
+        -->
+        <style>
+          .myClass{
+            color:wheat;
+         }
+         .myClass2{
+          color: wheat;
+         }
+         .myClass3{
+          color: wheat;
+         }
+         .myClass4{
+          color: wheat;
+         }
+         .btt{
+         color: black;
+              font-size: 35px;
+              text-align: center;
+              margin-left: 660px;
+              margin-top: 70px;
+              border: 2px solid mediumvioletred;
+         }
+
+         .sel{
+          font-size: 30px;
+          width: 100px;
+         }
+        </style>
+
+        <script type="text/javascript">
+           function submission(){
+
+            var status = false;
+
+            var warningMsg = document.getElementById("warningMsg");
+               
+
+               if(bodyPartExercise != "" || bodyPartExercise2 != "" || bodyPartExercise3 != "" || bodyExercise4 != ""){
+                status = true;
+               }
+               if (status == true){
+                alert("Backend not supported yet!");
+               }
+
+              
+              }
+
+           
+
+               function changeColor(){
+                var element = document.getElementById("bodyPartExercise");
+                element.className = "myClass";
+                }
+
+                function changeColor2(){
+                var element = document.getElementById("bodyPartExercise2");
+                element.className = "myClass2";
+                }
+                
+                function changeColor3(){
+                var element = document.getElementById("bodyPartExercise3");
+                element.className = "myClass3";
+                }
+
+                function changeColor4(){
+                var element = document.getElementById("bodyPartExercise4");
+                element.className = "myClass4";
+                }
+              
+              
+
+                
+                
+
+          </script>
          </head>
     
         <main>
@@ -46,46 +121,64 @@
                           <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height:12rem;">
                             
                             <div class="card-body p-5">
-                              <h2 class="card-title">A</h2>
-                              <a style="color:wheat" href="../currentMilestone/"><h5>Acute wry neck pain</h5></a>
-                             
-                             
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
-                            
-                            <div class="card-body p-5">
-                              <h2 class="card-title">C</h2>
-                              <a style="color: wheat" href="../currentMilestone/"><h5>Cervical postural syndrome</h5></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
-                            
-                            <div class="card-body p-5">
-                              <h2 class="card-title">N</h2>
-                              
-                              <a style="color: wheat" href="../currentMilestone/"><h5>Nerve root pain</h5></a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col">
-                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
                           
-                            <div class="card-body p-5">
-                              <h2 class="card-title">S</h2>
-                              
-                              <a style="color: wheat" href="../currentMilestone/"><h5>Stiff neck</h5></a>
+
+                              <div id="bodyPartExercise"> 
+                                <p><strong><h5>A- <br>Acute wry neck pain</h5></strong></p>
+                                  </div>
+                                 <button class="sel" type="button" onclick="changeColor()">select<button>
+                          
+                        
+                        
                             </div>
                           </div>
                         </div>
-                      </div>
-
+                        
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
+                            
+                            <div class="card-body p-5">
+                              
+                              <div id="bodyPartExercise2"> 
+                                <p><strong><h5>P- <br>Postural syndrome</h5></strong></p>
+                                  </div>
+                                 <button class="sel" type="button" onclick="changeColor2()">Select<button>
+                          
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
+                            
+                            <div class="card-body p-5">
+                              
+                              <div id="bodyPartExercise3"> 
+                                <p><strong><h5>N- <br>Nerve root pain</h5></strong></p>
+                                  </div>
+                                 <button class="sel" type="button" onclick="changeColor3()">Select<button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card text-bg-secondary mb-3 mx-auto" style="width:13rem; height: 12rem;">
+                            
+                            <div class="card-body p-5">
+                              
+                              <div id="bodyPartExercise3"> 
+                                <p><strong><h5>N- <br>Nerve root pain</h5></strong></p>
+                                  </div>
+                                 <button class="sel" type="button" onclick="changeColor3()">Select<button>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
                       
-                      <button type="button">Submit</button>
+                     <!-- <button class="submit" type="btn">Submit</button>-->
+                     <button class="btt" onclick="submission();">Submit</button>
+                      <br><br>
+                      <p id="warningMsg" style="color:red;"></p>
+
+                    
 
 
 

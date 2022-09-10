@@ -1,152 +1,332 @@
-<!-- /*------------------
-INCOMPLETE (PERSONAL NOTES)
-
-PROBLEMS NOT SOLVED:
-
-1. NOT SURE HOW TO MAKE COUNTER (FOR DAYS COMPLETED/INCOMPLETED)
-2. DROPDOWN BUTTON ONLY WORKS FOR FIRST BUTTON
-3. NOT SURE HOW TO MAKE DAY(X) (NAME OF CONDITION) - RESPONSIVE
-4. NOT SURE HOW TO INCLUDE TICK MARKS / CROSS MARKS ON DROPDOWNS 
-
-
------------------*/ -->
-
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  {% include "./header.html" %}
-    <meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My Journey Log</title>
-    <script type="text/javascript"> 
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log</title>
+    <script type="text/javascript">
+        var videoIndex = 1;	// counts 1 to n (1-based)
+        var slideIndex = 1;	// counts 1 to n (1-based)
 
-    /* When the user clicks on the button, 
-    toggle between hiding and showing the dropdown content */
-    function myFunction() 
-    {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
-    
-    // Close the dropdown if the user clicks outside of it
-    window.onclick = function(event) 
-    {
-      if (!event.target.matches('.dropbtn')) 
-      {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) 
+        // show the initial page of the thumb slider
+        function initSlideshow()
         {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) 
-          {
-            openDropdown.classList.remove('show');
-          }
+            showSlides(slideIndex);
         }
-      }
-    }
+
+        // Next/previous page of thumbnails controls
+        function plusSlides(n)
+        {	// call with 1 for next slide or -1 for previous, actually any number works except 0
+            showSlides(slideIndex += n);	// shortcut to modify variable and then call function with new value
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n)
+        {	// set the current slide directly (when clicking on the dots below)
+            showSlides(slideIndex = n);	// shortcut to modify variable and then call function with new value
+        }
+
+        function showSlides(n)
+        {
+            var i;
+            // returns an array of all slides
+            var slides = document.getElementsByClassName("mySlides");
+            // returns an array of all dots
+            var dots = document.getElementsByClassName("dot");
+            // range check: if selected index is too high, show first slide instead (wraparound)
+            if (n > slides.length)
+            {
+                slideIndex = 1;
+            }
+            // range check: if selected index is too low, show last slide instead (wraparound)
+            if (n < 1)
+            {
+                slideIndex = slides.length;	// length = total number of slides
+            }								// this works because slideIndex is 1-based
+            // hide all slides
+            for (i = 0; i < slides.length; i++)
+            {	// count from 0 to one less than length, since array index is 0-based
+                slides[i].style.display = "none";
+            }
+            // inactivate all dots
+            for (i = 0; i < dots.length; i++)
+            {	// again, 0-based
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            //lastly, show the selected slide and show the corresponding dot as active
+            slides[slideIndex-1].style.display = "block";	// the -1 is required to convert from
+            dots[slideIndex-1].className += " active";		// 1-based slideIndex to 0-based array index
+        }
     </script>
-    
+
     <style>
-        .gridContainer 
+        body
         {
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .container{
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+
+        .slideshow-container .workout-form .form-control{
+            display: block;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 12px;
+            border: 1px solid #000;
+            outline: none;
+            text-transform: uppercase;
+            background: #ccc;
+        }
+
+        .slideshow-container{
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;      
+        }
+
+        .mySlides
+        {
+            display: none;
+            font-size: 0;	
+        }					
+                            
+        .prev, .next
+        {	background-color: #ccc;
+            cursor: pointer;
+            display: inline-block;            
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+            transition: 0.6s ease;	
+            border-radius: 100%;	
+            user-select: none;
+        }
+
+        .next
+        {
+            right: 0;
+            border-radius: 100%;
+        }
+
+        .prev:hover, .next:hover
+        {
+            background-color: #000;
+            color: #ccc;
+        }
+
+        .controls{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dot
+        {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px 1em 2px;
+            background-color: #000;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active, .dot:hover
+        {
+            background-color: #ccc;
+        }
+
+        #dropdown-section
+        {
+            background: #ffffff;
+            padding: 0 20px;
+        }
+        
+        #dropdown-section .title{
+            text-align: center;
+            color: #000;
+            text-transform: uppercase;
+        }
+
+        #dropdown-section .days{
+            display: flex;
+            align-items: center;
+            grid-gap: 10px;
+        }
+
+        #dropdown-section .days .desc{
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        #dropdown-section .days .box{
+            width: 50px;
+            height: 50px;
+            background: #ccc;
+            border: 1px solid #000;
+        }
+
+        .grid{
             display: grid;
-            justify-content: space-evenly;
-            grid-template-columns: auto auto;
-            gap: 10px;
-            background-color: #3498DB;
-              color: white;
-            padding: 10px;
-        
+            justify-items: center;
+            margin: 30px 0;
         }
-        
-        .dropbtn 
-        {
-          background-color: #3498DB;
-          color: white;
-          padding: 16px;
-          font-size: 16px;
-          border: none;
-          cursor: pointer;
-        }
-        
-        .dropbtn:hover, .dropbtn:focus 
-        {
-          background-color: #2980B9;
-        }
-        
-        .dropdown 
-        {
-          position: relative;
-          display: grid;
-          grid-template-columns: auto;
-          padding: 10px;
-          row-gap: 50px;
-        }
-        
-        .dropdown-content
-        {
-          display: none;
-          position: absolute;
-          background-color: #f1f1f1;
-          min-width: 160px;
-          overflow: auto;
-          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-          z-index: 1;
-        }
-        
-        
-        .dropdown-content a 
-        {
-          color: black;
-          padding: 12px 16px;
-          text-decoration: none;
-          display: block;
-        }
-        
-        
-        
-        .dropdown a:hover {background-color: #ddd;}
-        
-        .show {display: block;}
-    </style>
 
-</head>   
+        .grid-gap{
+            grid-gap: 20px;
+        }
 
-<header>
+        .options{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-</header>
-
+        @media screen and (min-width:768px){
+            .grid--cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+            }            
+        }
+</style>
+</head>
 <body>
+    <section id="dropdown-section" class="container">
+        <h1 class="title">my journey log</h1>
+		<div class="slideshow-container">
+			<div class="mySlides" style="display: block;">
+				<form class="workout-form" action="#" method="post">
+                    <div class="grid grid--cols-2 grid-gap">
+                        <div class="days">
+                            <p class="desc">total days completed</p>
+                            <input type="text" name="completed" class="box">
+                        </div>
+                        <div class="days">
+                            <p class="desc">days incompleted</p>
+                            <input type="text" name="incompleted" class="box">
+                        </div>
+                    </div>
+                    <div class="options">
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                    </div>
+                </form>
+			</div>
 
-    <h1 style="text-align:center;"> My Journey Log</h1>
-    
-    <div class="gridContainer">
-        <div id="daysCompleted" class="logCounter">
-            Total Days Completed
+			<div class="mySlides" style="display: none;">
+                <form class="workout-form" action="#" method="post">
+                    <div class="grid grid--cols-2 grid-gap">
+                        <div class="days">
+                            <p class="desc">total days completed</p>
+                            <input type="text" name="completed" class="box">
+                        </div>
+                        <div class="days">
+                            <p class="desc">days incompleted</p>
+                            <input type="text" name="incompleted" class="box">
+                        </div>
+                    </div>
+                    <div class="options">
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                    </div>
+                </form>
+			</div>
+
+			<div class="mySlides" style="display: none;">
+				<form class="workout-form" action="#" method="post">
+                    <div class="grid grid--cols-2 grid-gap">
+                        <div class="days">
+                            <p class="desc">total days completed</p>
+                            <input type="text" name="completed" class="box">
+                        </div>
+                        <div class="days">
+                            <p class="desc">days incompleted</p>
+                            <input type="text" name="incompleted" class="box">
+                        </div>
+                    </div>
+                    <div class="options">
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                    </div>
+                </form>
+			</div>
+
+			<div class="mySlides" style="display: none;">
+				<form class="workout-form" action="#" method="post">
+                    <div class="grid grid--cols-2 grid-gap">
+                        <div class="days">
+                            <p class="desc">total days completed</p>
+                            <input type="text" name="completed" class="box">
+                        </div>
+                        <div class="days">
+                            <p class="desc">days incompleted</p>
+                            <input type="text" name="incompleted" class="box">
+                        </div>
+                    </div>
+                    <div class="options">
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                        <select name="" id="" class="form-control">
+                            <option value="">day x (name of condition)</option>
+                        </select>
+                    </div>
+                </form>
+			</div>
+		</div>
+        <div class="controls">
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <div style="text-align:center">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
+		    </div> 
+		    <a class="next" onclick="plusSlides(1)">❯</a>
         </div>
-    
-        <div id="daysInCompleted" class="logCounter">
-            Total Days Incompleted
-        </div>	
-    </div>
-    
-    
-    <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn">Day(x)(Name of Condition)</button>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="#exercise">Exercise</a>
-        <a href="#exercise">Exercise</a>
-      </div>
-    </div>
-    
-    <div class="dropdown">
-      <button onclick="myFunction()" class="dropbtn">Day(x)(Name of Condition)</button>
-      <div id="myDropdown" class="dropdown-content">
-        <a href="#exercise">Exercise</a>
-        <a href="#exercise">Exercise</a>
-      </div>
-    </div> 
-    <br><br>
+	</section>
 </body>
-{% include "./footer.html" %}
+</html>

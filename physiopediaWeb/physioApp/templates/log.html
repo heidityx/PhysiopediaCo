@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -199,7 +200,7 @@
 </head>
 <body>
     {% include "./header.html" %}
-    <section id="dropdown-section" class="container">
+        <section id="dropdown-section" class="container">
         <h1 class="title">my journey log</h1>
 		<div class="slideshow-container">
 			<div class="mySlides" style="display: block;">
@@ -329,7 +330,6 @@
 		    <a class="next" onclick="plusSlides(1)">❯</a>
         </div>
 	</section>
-    <br>
     {% include "./footer.html" %}
 </body>
 </html>
